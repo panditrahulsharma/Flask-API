@@ -21,7 +21,10 @@ conn = MySQLdb.connect(host="localhost",user="root",password="Root@123",db="rahu
 
 @app.route("/")
 def index():
-	return render_template("signup.html", title="Flask signUp form")
+	if "email" in session:
+		return redirect(url_for("user"))
+	else:		
+		return render_template("signup.html", title="Flask signUp form")
 
 @app.route("/signUp", methods=['GET', 'POST'])
 def signUp():
@@ -42,7 +45,9 @@ def signUp():
 
 				cursor.execute("INSERT INTO user (name,password,email)VALUES(%s,%s,%s)",(username,password,email))
 				conn.commit()
-				return redirect(url_for("login"))		
+				session.permanent = True 
+				session['email']=email #if i user is exist at login time then create session and redirect to profile
+				return redirect(url_for("user"))		
 			
 		else:
 			pass
@@ -53,7 +58,11 @@ def signUp():
 
 @app.route("/login")
 def login():
-	return render_template("login.html",title="Flask Login Form")
+	if "email" in session:
+		return redirect(url_for("user"))
+	else:
+
+		return render_template("login.html",title="Flask Login Form")
 
 
 
@@ -70,8 +79,6 @@ def check():
 			user = cursor.fetchall()
 			
 			if len(user) >0:
-				for value in user:
-					print(value)	
 					#https://stackoverflow.com/questions/26954122/how-can-i-pass-arguments-into-redirecturl-for-of-flask
 				session.permanent = True 
 				session['email']=email #if i user is exist at login time then create session and redirect to profile
@@ -105,14 +112,14 @@ def user():
 		cursor.execute("SELECT * FROM user WHERE email ='"+email+"' ")
 		account = cursor.fetchall()
 		print(account)
-		return render_template("home.html",user_info=account[0])
+		return render_template("profile.html",user_info=account[0])
 	else:
 		return redirect(url_for("login"))
 
 
 @app.route("/logout")
 def logout():
-    session.pop("user", None)
+    session.pop("email", None)
     return redirect(url_for("login"))
 
 
