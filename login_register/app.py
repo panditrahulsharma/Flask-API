@@ -1,4 +1,5 @@
-from flask import Flask,render_template,request,redirect,url_for
+from flask import *
+from flask import Flask, request, jsonify, json, make_response, redirect, session, send_from_directory
 import MySQLdb
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -54,13 +55,15 @@ def check():
 			password = str(request.form["pswd"])
 
 			cursor = conn.cursor()
-			cursor.execute("SELECT name FROM user WHERE email ='"+email+"' and password='"+password+"' ")
+			cursor.execute("SELECT * FROM user WHERE email ='"+email+"' and password='"+password+"' ")
 			user = cursor.fetchall()
 			
 			if len(user) >0:
 				for value in user:
-				    print(value)		
-				return redirect(url_for("home"))
+				    print(value)	
+				    #https://stackoverflow.com/questions/26954122/how-can-i-pass-arguments-into-redirecturl-for-of-flask
+
+				return redirect(url_for("home",data=user)) #data is a variable you can use any to send for home page
 			else:
 				return render_template("signup.html", title="Invalid details")	
 			
@@ -75,7 +78,7 @@ def check():
 
 @app.route("/home")
 def home():
-	return render_template("home.html")
+	return render_template("home.html",user_data=request.args.get('data')) #don't mind user_data its random name you can use your own this is reflect on home page
 
 if __name__ == "__main__":
 	app.run(debug=True,port=4000)
