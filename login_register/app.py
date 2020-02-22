@@ -7,7 +7,7 @@ conn = MySQLdb.connect(host="localhost",user="root",password="Root@123",db="rahu
 
 @app.route("/")
 def index():
-	return render_template("signup.html", title="SignUP")
+	return render_template("signup.html", title="Flask signUp form")
 
 @app.route("/signUp", methods=['GET', 'POST'])
 def signUp():
@@ -24,7 +24,7 @@ def signUp():
 
 @app.route("/login")
 def login():
-	return render_template("login.html",title="data")
+	return render_template("login.html",title="Flask Login Form")
 
 
 
