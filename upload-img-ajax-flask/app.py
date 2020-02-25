@@ -12,13 +12,15 @@ import urllib.request
 #from app import app
 from werkzeug.utils import secure_filename
 
+import cv2
+
 #create session in flask 
 #https://www.youtube.com/watch?v=iIhAfX4iek0
 #https://techwithtim.net/tutorials/flask/sessions/
 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
-UPLOAD_FOLDER = '/home/rahul/Music/flask-api/demo/upload'
+UPLOAD_FOLDER = '/home/rahul/Pictures/Flask-API/upload-img-ajax-flask/upload'
 
 
 app = Flask(__name__)
@@ -159,15 +161,19 @@ def upload_file():
 	
 	files = request.files.getlist('files[]')
 	
-	print(files)
 
 	errors = {}
 	success = False
 	
+	#i am return image shape
+	img_shape=[]
 	for file in files:
 		if file and allowed_file(file.filename):
 			filename = secure_filename(file.filename)
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+			img = cv2.imread(app.config['UPLOAD_FOLDER']+'/'+filename,0) #this code read image from folder
+			img_shape.append(img.shape)
+			print(img.shape)
 			success = True
 		else:
 			errors[file.filename] = 'File type is not allowed'
@@ -177,8 +183,8 @@ def upload_file():
 		resp = jsonify(errors)
 		resp.status_code = 206
 		return resp
-	if success:
-		resp = jsonify({'message' : '***************Result ******************'})
+	if success:		
+		resp = jsonify({'message' :img_shape})
 		resp.status_code = 201
 		return resp
 	else:
