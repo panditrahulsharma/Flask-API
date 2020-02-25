@@ -19,12 +19,18 @@ app.secret_key = "hello" #encrypt data by this key on server
 
 conn = MySQLdb.connect(host="localhost",user="root",password="root@123",db="rahul")
 
+
+
 @app.route("/")
 def index():
 	if "email" in session:
 		return redirect(url_for("user"))
 	else:		
 		return render_template("signup.html", title="Flask signUp form")
+
+
+
+
 
 @app.route("/signUp", methods=['GET', 'POST'])
 def signUp():
@@ -121,6 +127,22 @@ def user():
 def logout():
     session.pop("email", None)
     return redirect(url_for("login"))
+
+
+@app.route('/rahul')
+def ajax():
+	return render_template('ajax.html')
+
+
+@app.route('/process',methods= ['POST'])
+def process():
+	firstName = request.form['firstName']
+	lastName = request.form['lastName']
+	output = firstName + lastName
+	if firstName and lastName:
+		return jsonify({'output':'Full Name: ' + output})
+	return jsonify({'error' : 'Missing data!'})
+
 
 
 if __name__ == "__main__":

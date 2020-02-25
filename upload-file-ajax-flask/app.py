@@ -1,18 +1,28 @@
+from flask import Flask
 import os
 #import magic
 import urllib.request
-from app import app
+#from app import app
 from flask import Flask, flash, request, redirect, render_template, jsonify
 from werkzeug.utils import secure_filename
 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
+UPLOAD_FOLDER = '/home/rahul/Music/flask-api/upload-file-ajax-flask/upload'
+
+app = Flask(__name__)
+app.secret_key = "secret key"
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+
+
+
 def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 	
-@app.route('/')
+@app.route('/upload')
 def upload_form():
-	return render_template('file-upload.html')
+	return render_template('upload.html')
 
 @app.route('/python-flask-files-upload', methods=['POST'])
 def upload_file():
@@ -24,6 +34,8 @@ def upload_file():
 	
 	files = request.files.getlist('files[]')
 	
+	print(files)
+
 	errors = {}
 	success = False
 	
@@ -50,4 +62,4 @@ def upload_file():
 		return resp
 
 if __name__ == "__main__":
-    app.run(debug=True,port=5000)
+    app.run(debug=True,port=4000)

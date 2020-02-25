@@ -17,7 +17,7 @@
 }
 </style>
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<title>Flask profile form</title>
+<title>Flask Signup form</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
@@ -29,31 +29,33 @@
  <div class="container-fluid h-100" >
   
  <div class="header clearfix">
- <h4 class="text-muted">Flask Login Form</h4>
+ <h4 class="text-muted">{{title}}</h4>
  </div>
 
- <h2>Form Validation</h2>
+ <h2>Form Validation in ajax</h2>
   
-    <h2>successfully login</h2>
 
-<h2>welcome {{user_info[1]}} </h2>
 
- <form  class="needs-validation" >
-    
-    <div class="form-group">
-      <label for="uname">Name:</label>
-      <input type="email" class="form-control" id="uname" placeholder="Enter Email" name="name" value="{{user_info[1]}}" required>
+
+
+    <form  class="needs-validation" >
+      <div class="form-group">
+      <label for="uname">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email" required>
+      <div class="invalid-feedback">Please fill out this field.</div>
     </div>
 
     <div class="form-group">
-      <label for="uname">Email:</label>
-      <input type="email" class="form-control" id="uname" placeholder="Enter Email" name="email" value="{{user_info[3]}}" required>
+      <label for="uname">Username:</label>
+      <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" required>
+      <div class="invalid-feedback">Please fill out this field.</div>
     </div>
 
 
     <div class="form-group">
       <label for="pwd">Password:</label>
-      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" value="{{user_info[2]}}" required>
+      <input type="password" class="form-control" id="pswd" placeholder="Enter password" name="pswd" required>
+      <div class="invalid-feedback">Please fill out this field.</div>
     </div>
 
 
@@ -65,10 +67,13 @@
   </div>
 !-->
 
+    <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 
 
-<a href="/logout">LOGOUT</a>
+</br>
+<div id="output"></div>
+</br>
 
 
 <br><br>
@@ -84,25 +89,34 @@
 
 </div>
 
-<script>
-// Disable form submissions if there are invalid fields
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Get the forms we want to add validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+  
+$(document).ready(function() {
+     $('form').on('submit', function(event) {
+       $.ajax({
+          data : {
+             email : $('#email').val(),
+             uname: $('#uname').val(),
+             pswd: $('#pswd').val(),
+                 },
+             type : 'POST',
+             url : '/signUp'
+            })
+        .done(function(data) {
+
+          window.location.href = "/user";
+
+      });
+      event.preventDefault();
+      });
+});
+
 </script>
+
+
 </body>
 </html>
