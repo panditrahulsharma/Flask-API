@@ -11,8 +11,11 @@ import os
 import urllib.request
 #from app import app
 from werkzeug.utils import secure_filename
-
 import cv2
+
+########################  import function define in model file  #########
+
+from model import blood_cell_classification
 
 #create session in flask 
 #https://www.youtube.com/watch?v=iIhAfX4iek0
@@ -166,13 +169,14 @@ def upload_file():
 	success = False
 	
 	#i am return image shape
-	img_shape=[]
+	result=[]
 	for file in files:
 		if file and allowed_file(file.filename):
 			filename = secure_filename(file.filename)
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 			img = cv2.imread(app.config['UPLOAD_FOLDER']+'/'+filename,0) #this code read image from folder
-			img_shape.append(img.shape)
+			pred=blood_cell_classification(img)
+			result.append(pred)
 			print(img.shape)
 			success = True
 		else:
@@ -184,7 +188,7 @@ def upload_file():
 		resp.status_code = 206
 		return resp
 	if success:		
-		resp = jsonify({'message' :img_shape})
+		resp = jsonify({'message' :result[0]})
 		resp.status_code = 201
 		return resp
 	else:
