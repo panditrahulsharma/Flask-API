@@ -69,11 +69,11 @@ def Dashboard(WorkSpace=None, NewFolder=None):
 	if not WorkSpace and not NewFolder:
 		send_data = [{"name":"What is RPA: Robotic Process Automation","length":"2m","leng":"en-gb","upload":"7-oct","status":'sucess'},{"name":"python","length":"4m","leng":"en-gb","upload":"8-oct","status":'sucess'}];
 		# return make_response(jsonify(send_data), 200)
-		return render_template("dynamic.html")
+		return render_template("dashboard.html")
 	elif WorkSpace and not NewFolder:
-		return render_template("dynamic.html")
+		return render_template("dashboard.html")
 	elif WorkSpace and NewFolder:
-		return render_template("dynamic.html")
+		return render_template("dashboard.html")
 	else:
 		return "not match"
 

@@ -1,0 +1,1946 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Cloutcube Dashboard</title>
+
+  <!-- Custom fonts for this template-->
+
+
+
+  <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
+   <link href="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- script for upload transcript file -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+
+<!-- new add -->
+
+<script src="{{ url_for('static', filename='data2.js')}}" crossorigin="anonymous"></script>
+
+<!--  -->
+
+   <style type="text/css">
+     body{
+      background-color: #f4f8f9;
+     }
+
+     ul#accordionSidebar {
+    background-color: #fff;
+    }
+
+    .sidebar-dark hr.sidebar-divider {
+    border-top: 2px solid rgba(0, 0, 0, 0.15) !important;
+    }
+
+    #clout-btn{
+      background-color: #233d63!important;
+      border-color: #233d63 !important;
+    }
+
+    .page-item.active .page-link {
+    background-color: #f48141 !important;
+    border-color: #f48141 !important;
+}
+
+.clout-demo-btn button{
+  padding: 15px 40px;
+}
+
+.clout-demo-btn {
+    background-color: #233d63;
+    text-align: -webkit-center;
+}
+
+.clout-table{
+  text-decoration: underline;
+}
+
+.clout-product-length{
+  text-align: center;
+}
+
+.clout-date{
+  text-align: center;
+}
+
+.clout-product-language{
+  text-align: center;
+}
+
+.clout-sidebar {
+    border: 2px solid #ECECEC;
+    border-radius: 6px;
+}
+
+.clout-lock span{
+   background-color: #f48141;
+    padding: 1px 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.clout-done span{
+   background-color: #009f3b;
+    padding: 1px 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.clout-view span{
+   background-color: #009f3b;
+    padding: 2px 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 500;
+    background-color: #4789f7;
+    cursor: pointer;
+}
+
+.clout-pending span{
+   background-color: #a9a601;
+    padding: 1px 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.btn.focus, .btn:focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+.scroll-to-top {
+    background: #233d63 !important;
+}
+
+.card-header {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #ffffff !important;
+}
+
+.clout-need-image img{
+  height: 120px;
+}
+
+.clout-need-image {
+    padding: 50px;
+    border-radius: 10px;
+}
+
+.modal-content {
+    border-radius: 10px;
+}
+
+.clout-modal{
+  margin-left: -16px;
+}
+
+.clout-scribe-section{
+  border: 2px solid;
+  border-radius: 8px;
+}
+
+.clout-scribe-button{
+  border: none;
+  background-color: transparent;
+}
+
+.form-control:focus {
+    border-color: #000000;
+    outline: none;
+    /* box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25); */
+}
+
+.clout-export-folder{
+  padding: 10px;
+}
+
+div#largeModal01 {
+    display: none;
+}
+
+button:focus {
+    outline: none !important;
+}
+
+footer.sticky-footer {
+    padding: 1.2rem 0 !important;
+}
+
+.sidebar .sidebar-brand {
+    background-color: #f48141 !important;
+}
+
+
+/*switch css start*/
+
+.clout-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 20px;
+}
+
+.clout-switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.clout-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.clout-slider:before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  top: 2px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.clout-proceed{
+  padding: 15px 150px;
+}
+
+.clout-create-folder{
+  padding: 15px 120px;
+}
+
+.clout-test-upload{
+   background-color: #fafafa;
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+}
+
+.cd-switch {
+    margin-top: -35px;
+    float: right;
+}
+
+input:checked + .clout-slider {
+  background-color: #2196F3;
+}
+
+input:focus + .clout-slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .clout-slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.clout-slider.round {
+  border-radius: 34px;
+}
+
+.clout-slider.round:before {
+  border-radius: 50%;
+}
+
+.clout-work-nav{
+  margin-top: -15px;
+}
+
+
+.nav-link{
+  padding: 0;
+}
+/*switch css end*/
+
+
+@media screen and (max-width: 1024px){
+.clout-demo-btn button {
+    padding: 16px 8px;
+}
+}
+
+@media screen and (max-width: 768px){
+.clout-folder {
+    padding: 10px;
+}
+}
+
+@media screen and (max-width: 425px){
+.clout-demo-btn button {
+    padding: 12px 12px;
+}
+.clout-folder {
+    padding: 2px;
+}
+.clout-need-image {
+    padding: 20px;
+}
+.clout-proceed{
+  padding: 15px 70px;
+}
+
+.clout-create-folder{
+  padding: 15px 70px;
+}
+.clout-modal{
+  margin-left: auto;
+}
+}
+
+
+
+.upload {
+  position: relative;
+  min-height: 310px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding-bottom: 20px;
+  background: #fff;
+  -webkit-animation: fadeup .5s .5s ease both;
+          animation: fadeup .5s .5s ease both;
+  -webkit-transform: translateY(20px);
+          transform: translateY(20px);
+  opacity: 0;
+}
+.upload .upload-files header {
+  background: #233d63;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  text-align: center;
+}
+.upload .upload-files header p {
+  color: #fff;
+  font-size: 30px;
+  margin: 0;
+}
+.upload .upload-files header p i {
+  -webkit-transform: translateY(20px);
+          transform: translateY(20px);
+  opacity: 0;
+  font-size: 30px;
+  -webkit-animation: fadeup .5s 1s ease both;
+          animation: fadeup .5s 1s ease both;
+}
+.upload .upload-files header p .up {
+  font-weight: bold;
+  -webkit-transform: translateX(-20px);
+          transform: translateX(-20px);
+  display: inline-block;
+  opacity: 0;
+  -webkit-animation: faderight .5s 1.5s ease both;
+          animation: faderight .5s 1.5s ease both;
+}
+.upload .upload-files header p .load {
+  display: inline-block;
+  font-weight: 100;
+  margin-left: -8px;
+  -webkit-transform: translateX(-20px);
+          transform: translateX(-20px);
+  opacity: 0;
+  -webkit-animation: faderight 1s 1.5s ease both;
+          animation: faderight 1s 1.5s ease both;
+}
+.upload .upload-files .body {
+  text-align: center;
+  padding: 50px 0;
+  padding-bottom: 30px;
+}
+.upload .upload-files .body.hidden {
+  display: none;
+}
+.upload .upload-files .body input {
+  visibility: hidden;
+}
+.upload .upload-files .body i {
+  font-size: 65px;
+  color: lightgray;
+}
+.upload .upload-files .body p {
+  font-size: 14px;
+  padding-top: 15px;
+  line-height: 1.4;
+}
+.upload .upload-files .body p b,
+.upload .upload-files .body p a {
+  color: #4db6ac;
+}
+.upload .upload-files .body.active {
+  border: dashed 2px #4db6ac;
+}
+.upload .upload-files .body.active i {
+  box-shadow: 0 0 0 -3px #fff, 0 0 0 lightgray, 0 0 0 -3px #fff, 0 0 0 lightgray;
+  -webkit-animation: file .5s ease both;
+          animation: file .5s ease both;
+}
+@-webkit-keyframes file {
+  50% {
+    box-shadow: -8px 8px 0 -3px #fff, -8px 8px 0 lightgray, -8px 8px 0 -3px #fff, -8px 8px 0 lightgray;
+  }
+  75%,
+          100% {
+    box-shadow: -8px 8px 0 -3px #fff, -8px 8px 0 lightgray, -16px 16px 0 -3px #fff, -16px 16px 0 lightgray;
+  }
+}
+@keyframes file {
+  50% {
+    box-shadow: -8px 8px 0 -3px #fff, -8px 8px 0 lightgray, -8px 8px 0 -3px #fff, -8px 8px 0 lightgray;
+  }
+  75%,
+          100% {
+    box-shadow: -8px 8px 0 -3px #fff, -8px 8px 0 lightgray, -16px 16px 0 -3px #fff, -16px 16px 0 lightgray;
+  }
+}
+.upload .upload-files .body.active .pointer-none {
+  pointer-events: none;
+}
+.upload .upload-files footer {
+  width: 100%;
+  margin: 0 auto;
+  height: 0;
+}
+.upload .upload-files footer .divider {
+  margin: 0 auto;
+  width: 0;
+  border-top: solid 4px #f48141;
+  text-align: center;
+  overflow: hidden;
+  -webkit-transition: width .5s ease;
+  transition: width .5s ease;
+}
+.upload .upload-files footer .divider span {
+  display: inline-block;
+  -webkit-transform: translateY(-25px);
+          transform: translateY(-25px);
+  font-size: 12px;
+  padding-top: 8px;
+}
+.upload .upload-files footer.hasFiles {
+  height: auto;
+}
+.upload .upload-files footer.hasFiles .divider {
+  width: 100%;
+}
+.upload .upload-files footer.hasFiles .divider span {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-transition: -webkit-transform .5s .5s ease;
+  transition: -webkit-transform .5s .5s ease;
+  transition: transform .5s .5s ease;
+  transition: transform .5s .5s ease, -webkit-transform .5s .5s ease;
+}
+.upload .upload-files footer .list-files {
+  width: 320px;
+  margin: 0 auto;
+  margin-top: 15px;
+  padding-left: 5px;
+  text-align: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 210px;
+}
+.upload .upload-files footer .list-files::-webkit-scrollbar-track {
+  background-color: rgba(211, 211, 211, 0.25);
+}
+.upload .upload-files footer .list-files::-webkit-scrollbar {
+  width: 4px;
+  background-color: rgba(211, 211, 211, 0.25);
+}
+.upload .upload-files footer .list-files::-webkit-scrollbar-thumb {
+  background-color: rgba(77, 182, 172, 0.5);
+}
+.upload .upload-files footer .list-files .file {
+  width: 300px;
+  min-height: 50px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+          align-items: center;
+  opacity: 0;
+  -webkit-animation: fade .35s ease both;
+          animation: fade .35s ease both;
+}
+.upload .upload-files footer .list-files .file .name {
+  font-size: 12px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 80px;
+  text-align: left;
+}
+.upload .upload-files footer .list-files .file .progress {
+  width: 175px;
+  height: 5px;
+  border: solid 1px lightgray;
+  border-radius: 2px;
+  background: -webkit-gradient(linear, right top, left top, from(rgba(77, 182, 172, 0.2)), to(rgba(77, 182, 172, 0.8))) no-repeat;
+  background: linear-gradient(to left, rgba(77, 182, 172, 0.2), rgba(77, 182, 172, 0.8)) no-repeat;
+  background-size: 100% 100%;
+}
+.upload .upload-files footer .list-files .file .progress.active {
+  -webkit-animation: progress 30s linear;
+          animation: progress 30s linear;
+}
+@-webkit-keyframes progress {
+  from {
+    background-size: 0 100%;
+  }
+  to {
+    background-size: 100% 100%;
+  }
+}
+@keyframes progress {
+  from {
+    background-size: 0 100%;
+  }
+  to {
+    background-size: 100% 100%;
+  }
+}
+.upload .upload-files footer .list-files .file .done {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  background: #4db6ac;
+  border-radius: 50%;
+  margin-left: -10px;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  position: relative;
+}
+.upload .upload-files footer .list-files .file .done:before {
+  content: "View";
+  position: absolute;
+  top: 0;
+  left: -5px;
+  font-size: 24px;
+  opacity: 0;
+}
+.upload .upload-files footer .list-files .file .done:hover:before {
+  -webkit-transition: all .25s ease;
+  transition: all .25s ease;
+  top: -30px;
+  opacity: 1;
+}
+.upload .upload-files footer .list-files .file .done.anim {
+  -webkit-animation: done1 .5s ease forwards;
+          animation: done1 .5s ease forwards;
+}
+.upload .upload-files footer .list-files .file .done.anim #path {
+  -webkit-animation: done2 2.5s .5s ease forwards;
+          animation: done2 2.5s .5s ease forwards;
+}
+.upload .upload-files footer .list-files .file .done #path {
+  stroke-dashoffset: 7387.59423828125;
+  stroke-dasharray: 7387.59423828125 7387.59423828125;
+  stroke: #fff;
+  fill: transparent;
+  stroke-width: 50px;
+}
+@-webkit-keyframes done2 {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes done2 {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@-webkit-keyframes done1 {
+  50% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    opacity: 1;
+  }
+  80% {
+    -webkit-transform: scale(0.25);
+            transform: scale(0.25);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    opacity: 1;
+  }
+}
+@keyframes done1 {
+  50% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    opacity: 1;
+  }
+  80% {
+    -webkit-transform: scale(0.25);
+            transform: scale(0.25);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    opacity: 1;
+  }
+}
+.upload .upload-files footer .importar {
+  outline: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  margin: auto;
+  border: solid 1px #4db6ac;
+  color: #4db6ac;
+  background: transparent;
+  padding: 8px 15px;
+  font-size: 12px;
+  border-radius: 4px;
+  font-family: Roboto;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-transform: translateY(15px);
+          transform: translateY(15px);
+  opacity: 0;
+  visibility: hidden;
+  margin-left: calc(50% - 40px);
+}
+.upload .upload-files footer .importar.active {
+  -webkit-transition: opacity .5s 1.5s ease, background, -webkit-transform .5s 1.5s ease;
+  transition: opacity .5s 1.5s ease, background, -webkit-transform .5s 1.5s ease;
+  transition: transform .5s 1.5s ease, opacity .5s 1.5s ease, background;
+  transition: transform .5s 1.5s ease, opacity .5s 1.5s ease, background, -webkit-transform .5s 1.5s ease;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+.upload .upload-files footer .importar:hover {
+  background: #4db6ac;
+  color: #fff;
+}
+@-webkit-keyframes fadeup {
+  to {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes fadeup {
+  to {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes faderight {
+  to {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes faderight {
+  to {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fade {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade {
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 400px) {
+  .upload {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
+</style>
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.html">
+        <div class="sidebar-brand-text mx-3">
+          <img src="{{ url_for('static', filename='img/cloutlogo.png')}}" class="img-fluid">
+        </div>
+      </a>
+
+      <!-- Divider -->
+      <!-- <hr class="sidebar-divider my-0"> -->
+
+     <!-- Nav Item - Dashboard -->
+      <li class="nav-item active mt-5">
+        <a class="nav-link" href="dashboard.html" style="color: #000 !important;">
+          <i class="fas fa-fw fa-tachometer-alt" style="color: #000 !important;"></i>
+          <span>Dashboard</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" style="color: #B5B5B5;">
+          <span>Workspaces</span></a>
+      </li>
+        <li class="nav-item active pl-3 clout-work-nav">
+        <a class="nav-link" href="new-workspace.html" style="color: #000 !important;">
+          <i class="fa fa-plus" style="color: #000 !important;"></i>
+          <span>New Workspaces</span></a>
+      </li>
+       <!-- Divider -->
+       <hr class="sidebar-divider">
+
+<!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" style="color: #B5B5B5;">
+          <span>Other</span></a>
+      </li>
+        <li class="nav-item active pl-3 clout-work-nav">
+        <a class="nav-link" href="vocab.html" style="color: #000 !important;">
+          <i class="fa fa-plus" style="color: #000 !important;"></i>
+          <span>My Vocabulary</span></a>
+      </li>
+       <!-- Divider -->
+       <hr class="sidebar-divider">
+
+      <!-- Divider -->
+      <br/>
+       <div class="clout-sidebar mx-3">
+      <p class="mx-3 pt-2">Remaining Credit<b>(0s)</b></p>
+      <button type="button" class="btn btn-primary mb-3 mx-3 font-weight-bold" 
+      style="border: none;background-color: #233d63;">Buy more hours</button>
+       </div>
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow" 
+        style="background-color: #f48141;">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <!-- Topbar Search -->
+          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button" id="clout-btn">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+              </a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                  <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img class="img-profile rounded-circle" src="{{ url_for('static', filename='img/user.png')}}">
+              </a>
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                 <a class="dropdown-item font-weight-bold" href="dashboard.html">
+                  <i class="fa fa-cog fa-sm fa-fw mr-2" style="color: #000;">
+                  </i>
+                  My Transcripts
+                </a>
+                <a class="dropdown-item font-weight-bold" href="dashboard.html">
+                  <i class="fa fa-cog fa-sm fa-fw mr-2" style="color: #000;font-weight: bold;">
+                  </i>
+                  Top-up & Plans &nbsp;<sup style="color: red;font-weight: bold;">
+                  New</sup>
+                </a>
+                <a class="dropdown-item font-weight-bold" href="vocab.html">
+                  <i class="fa fa-cog fa-sm fa-fw mr-2" style="color: #000;">
+                  </i>
+                  My Vocabulary
+                </a>
+                 <a class="dropdown-item font-weight-bold" href="account.html">
+                  <i class="fa fa-cog fa-sm fa-fw mr-2" style="color: #000;">
+                  </i>
+                  Setting
+                </a>
+                <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2" 
+                  style="color: #000;"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+
+          </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+           <div class="container-fluid">
+             <div class="row">
+               <div class="col-lg-3 clout-folder">
+                   <div class="clout-demo-btn">
+                   <a href="#" class="" data-toggle="modal" data-target="#largeModal">
+                    <button type="button" class="btn waves-effect waves-light text-white font-weight-bold text-center">
+                    <span><i class="fas fa-upload"></i></span> &nbsp;Upload  new file
+                  </button></a>
+                  </div>
+               </div>
+               <div class="col-lg-3 clout-folder">
+                  <div class="clout-demo-btn">
+                  <a href="#" class="" data-toggle="modal" data-target="#largeModalNew">
+                   <button type="button" class="btn waves-effect waves-light text-white font-weight-bold text-center">
+                    <span><i class="far fa-folder-open"></i></span> &nbsp; New folder
+                  </button>
+                </a>
+                  </div>
+               </div>
+               <div class="col-lg-3 clout-folder">
+                   <div class="clout-demo-btn">
+                   <a href="#" class="" data-toggle="modal" 
+                   data-target="#largeModalExport">
+                   <button type="button" class="btn waves-effect waves-light text-white font-weight-bold text-center">
+                    <span><i class="fas fa-file-export"></i></span> &nbsp; Export files
+                  </button>
+                </a>
+                  </div>
+               </div>
+               <div class="col-lg-3 clout-folder">
+                  <div class="clout-demo-btn">
+                    <button type="button" class="btn waves-effect waves-light text-white font-weight-bold text-center" onclick="myFunction()">
+                    <span><i class='fas fa-trash-alt'></i></span>&nbsp;&nbsp;Delete files
+                  </button>
+                  </div>
+               </div>
+             </div>
+           </div>
+
+<!-- large modal -->
+<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content clout-modal">
+      <div class="modal-header" style="border-bottom: none;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3 class="font-weight-bold text-center" 
+        style="color: #233d63;text-decoration: underline;">What do you need ?</h3>
+        <div class="container py-5">
+          <div class="row">
+            <div class="col-lg-6 text-center clout-scribe-section">
+              <a href="#" class="" data-toggle="modal" data-target="#largeModal01">
+              <button onclick="switchVisible();" class="clout-scribe-button">
+              <div class="clout-need-image text-center">
+                <img src="img/demo1.png" class="img-fluid">
+                <h5 class="text-center font-weight-bold py-3" 
+                style="color: #233d63;text-decoration: underline;">Transcription</h5>
+              </div>
+            </button>
+            </a>
+            </div>
+             <div class="col-lg-6 text-center clout-scribe-section">
+              <a href="#" class="" data-toggle="modal" data-target="#largeModal01">
+              <button onclick="switchVisible();" class="clout-scribe-button">
+              <div class="clout-need-image text-center">
+                <img src="img/demo1.png" class="img-fluid">
+                <h5 class="text-center font-weight-bold py-3" 
+                style="color: #233d63;text-decoration: underline;">Subtitles</h5>
+              </div>
+            </button>
+            </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-header" style="border-bottom: none;"> 
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="largeModal01" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content clout-modal">
+      <div class="modal-header" style="border-bottom: none;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3 class="font-weight-bold text-center" 
+        style="color: #233d63;text-decoration: underline;">
+        Upload a file</h3>
+        <div class="row py-3">
+        <div class="col-lg-11 mx-auto">
+        <h4 class="font-weight-bold py-3" style="color: #233d63;">
+        How is the quality of the audio ?</h4>
+        <div class="clout-scibe-text">
+          <p class="font-weight-bold">Is the background noise free?</p>
+            <div class="cd-switch">
+           <div class="switch">  
+          <input type="radio" name="choice" id="yes" value="yes" checked>
+          <label for="yes">Yes</label>&nbsp;&nbsp;
+          <input type="radio" name="choice" id="no" value="no">
+          <label for="no">No</label>
+          <span class="switchFilter"></span>
+        </div>
+        </div> 
+        </div>
+        <div class="clout-scibe-text">
+          <p class="font-weight-bold">Are speakers close to the mic?</p>
+            <div class="cd-switch">
+           <div class="switch">  
+          <input type="radio" name="choice" id="yes" value="yes" checked>
+          <label for="yes">Yes</label>&nbsp;&nbsp;
+          <input type="radio" name="choice" id="no" value="no">
+          <label for="no">No</label>
+          <span class="switchFilter"></span>
+        </div>
+        </div> 
+        </div>
+        <div class="clout-scibe-text">
+          <p class="font-weight-bold">Is conversation clear without overtalk?</p>
+            <div class="cd-switch">
+           <div class="switch">  
+          <input type="radio" name="choice" id="yes" value="yes" checked>
+          <label for="yes">Yes</label>&nbsp;&nbsp;
+          <input type="radio" name="choice" id="no" value="no">
+          <label for="no">No</label>
+          <span class="switchFilter"></span>
+        </div>
+        </div> 
+        </div>
+        <div class="clout-scibe-text">
+          <p class="font-weight-bold">Do speakers have clear accents?</p>
+            <div class="cd-switch">
+           <div class="switch">  
+          <input type="radio" name="choice" id="yes" value="yes" checked>
+          <label for="yes">Yes</label>&nbsp;&nbsp;
+          <input type="radio" name="choice" id="no" value="no">
+          <label for="no">No</label>
+          <span class="switchFilter"></span>
+        </div>
+        </div> 
+        </div>
+        <br/>
+  
+        <div class="text-center">
+        <a href="#" class="" data-toggle="modal" data-target="#largeModal02">
+        <button type="button" onclick="switchVisible();"  
+        class="btn btn-primary mb-3 mx-3 font-weight-bold clout-proceed" 
+        style="border: none;background-color: #233d63;">Proceed</button>
+      </a>
+      <form action="" class="pt-2">
+       <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+      <label for="vehicle1"> Don't show this again</label><br>
+      </form>
+        </div>
+      </div>
+      </div>
+      </div>
+      <div class="modal-header" style="border-bottom: none;"> 
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- start transcribe here -->
+
+          <div class="modal fade" id="largeModal02" tabindex="-1" role="dialog" 
+          aria-labelledby="basicModal" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content clout-modal">
+                <div class="modal-header" style="border-bottom: none;">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+
+          <form id="upload-file" method="post" enctype="multipart/form-data">
+
+                <div class="modal-body">
+                  <h3 class="font-weight-bold text-center" 
+                  style="color: #233d63;text-decoration: underline;">
+                  Upload a file to transcribe..</h3>
+                  <div class="row mx-auto py-3">
+                 <div class="col-lg-6">
+                   <div class="clout-audio-heading">
+                     <h5 class="font-weight-bold">
+                      <span class="font-weight-bold">1.</span>&nbsp; 
+                      Select the audio or video files</h5><br/>
+                      <!-- <input type="file" name="file"> -->
+                      <input id="file-upload" type="file" name="files[]" multiple="multiple" accept="video/mp4,video/x-m4v,video/*,audio/*" class="form-control" />
+                  </div>
+                 </div>
+                 <div class="col-lg-6">
+                   <div class="clout-audio-heading">
+                     <h5 class="font-weight-bold">
+                      <span class="font-weight-bold">2.</span>&nbsp; 
+                      Select the language spoken</h5><br/>
+                     <select class="form-control" name="language" id="SelectLanguage">
+                     <option value="English(United Kingdom)">English(United Kingdom)</option>
+                     <option value="English(United States)">English(United States)</option>
+                     <option value="English(Multiple Accents)">English(Multiple Accents)</option>
+                     <option value="Spanish(Spain)">Spanish(Spain)</option>
+                     <option value="Catalan(Spain)">Catalan(Spain)</option>
+                     <option value="French(France)">French(France)</option>
+                     </select>
+                     <br/><br/><br/><br/><br/>
+                     <div>
+                      <label class="clout-switch">
+                       <input type="checkbox">
+                       <span class="clout-slider round"></span>
+                      </label>
+                      <label>
+                      <p class="font-weight-bold">Use 
+                      <a href="#" style="text-decoration: underline;">
+                       My Vocabulary</a>
+                      </p>
+                      </label>
+                      <br/>
+                        <label class="clout-switch">
+                       <input type="checkbox">
+                       <span class="clout-slider round"></span>
+                      </label>
+                      <label>
+                      <p class="font-weight-bold">Auto-submit file once loaded
+                      </p>
+                      </label>
+                     </div>
+                    <div class="text-center">
+                   <a href="#" class="" data-toggle="modal" data-target="">
+                   <button type="button" onclick="switchVisible();"  
+                     class="btn btn-primary font-weight-bold clout-proceed" 
+                     style="border: none;background-color: #233d63;" id="upload-file-btn1">
+                     Proceed</button>
+
+
+                   </a>
+                  </div>
+                   </div>
+                 </div>
+                </div>
+                </div>
+          </form>
+
+                <div class="modal-header" style="border-bottom: none;"> 
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+<!-- End for upload file for transcribe with id largeModal02 -->
+
+
+<!--create new folder popup section start-->
+<div class="modal fade" id="largeModalNew" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content clout-modal">
+      <div class="modal-header" style="border-bottom: none;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row mx-auto py-3">
+       <div class="col-lg-10 mx-auto">
+         <div class="clout-audio-heading">
+           <h5 class="font-weight-bold">
+            Create new folder</h5>
+           <form class="">
+            <div class="input-group" style="border: 1px solid;border-radius: 5px;">
+              <input type="text" class="form-control bg-light border-0 small" 
+              placeholder="folder name" aria-label="Search" 
+              aria-describedby="basic-addon2">
+            </div>
+          </form>
+          <div class="text-center pt-3">
+        <button type="button" class="btn btn-primary font-weight-bold clout-create-folder" 
+           style="border: none;background-color: #233d63;">
+           Create folder
+         </button>
+         <button type="button" class="btn mt-2 btn-primary font-weight-bold clout-create-folder"data-dismiss="modal" aria-label="Close"
+           style="border: none;background-color: #233d63;">
+           Cancel
+         </button>
+        </div>
+         </div>
+       </div>
+      </div>
+      </div>
+      <div class="modal-header" style="border-bottom: none;"> 
+      </div>
+    </div>
+  </div>
+</div>
+<!--create new folder popup section end-->
+
+
+
+
+<!--move folder popup section start-->
+<div class="modal fade" id="largeModalMove" tabindex="-1" role="dialog" 
+aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content clout-modal">
+      <div class="modal-header" style="border-bottom: none;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row mx-auto py-3">
+       <div class="col-lg-10 mx-auto">
+         <div class="clout-audio-heading">
+           <h5 class="font-weight-bold">
+            Move 1 Item</h5>
+           <form class="w-100" style="">
+            <textarea class="w-100" rows="10" cols="50" name="comment" form="usrform"
+            style="overflow: scroll;">My Transcripts  
+            </textarea>
+            </form>
+          <div class="text-center pt-3">
+        <button type="button" class="btn btn-primary font-weight-bold clout-create-folder" 
+           style="border: none;background-color: #233d63;">
+           Save
+         </button>
+         <button type="button" class="btn mt-2 btn-primary font-weight-bold clout-create-folder"data-dismiss="modal" aria-label="Close"
+           style="border: none;background-color: #233d63;">
+           Cancel
+         </button>
+        </div>
+         </div>
+       </div>
+      </div>
+      </div>
+      <div class="modal-header" style="border-bottom: none;"> 
+      </div>
+    </div>
+  </div>
+</div>
+<!--Move folder popup section end-->
+
+
+<!--Rename folder popup section start-->
+<div class="modal fade" id="largeModalRename" tabindex="-1" role="dialog" 
+aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content clout-modal">
+      <div class="modal-header" style="border-bottom: none;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row mx-auto py-3">
+       <div class="col-lg-10 mx-auto">
+         <div class="clout-audio-heading">
+           <h5 class="font-weight-bold">
+            Rename Folder</h5>
+           <form class="">
+            <div class="input-group" style="border: 1px solid;border-radius: 5px;">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="folder name" aria-label="Search" aria-describedby="basic-addon2">
+            </div>
+          </form>
+          <div class="text-center pt-3">
+        <button type="button" class="btn btn-primary font-weight-bold clout-create-folder" 
+           style="border: none;background-color: #233d63;">
+           Save
+         </button>
+         <button type="button" class="btn mt-2 btn-primary font-weight-bold clout-create-folder"data-dismiss="modal" aria-label="Close"
+           style="border: none;background-color: #233d63;">
+           Cancel
+         </button>
+        </div>
+         </div>
+       </div>
+      </div>
+      </div>
+      <div class="modal-header" style="border-bottom: none;"> 
+      </div>
+    </div>
+  </div>
+</div>
+<!--Rename folder popup section end-->
+
+
+
+<!--export files popup section start-->
+<div class="modal fade" id="largeModalExport" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content clout-modal">
+      <div class="modal-header" style="border-bottom: none;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row mx-auto py-3">
+       <div class="col-lg-11 mx-auto">
+         <div class="clout-audio-heading">
+           <h5 class="font-weight-bold">
+            Export of 1 file</h5>
+            <br/>
+           <div class="clout-export-files">
+            <h5 class="font-weight-bold">
+            <span class="font-weight-bold">1.</span>&nbsp; 
+            Choose the format</h5>
+            <select class="form-control">
+           <option>Text Document (.txt)</option>
+           <option>Word Document (.docx)</option>
+           <option>PDF Document (.pdf)</option>
+           <option>Subtitles (SubRip .srt)</option>
+           <option>Subtitles (WebVTT .vtt)</option>
+           <option>Subtitles (EBU-STL .stl)</option>
+           <option>Avid Markers (.txt)</option>
+           <option>Interactive Transcript (.html)</option>
+           <option>Premiere Pro Markers (.xml)</option>
+           <option>Final Cut Pro (.fcpxml)</option>
+           <option>Maxqda (.txt)</option>
+           <option>JSON (.json)</option>
+           </select>
+           <br/><br/>
+            <h5 class="font-weight-bold">
+            <span class="font-weight-bold">2.</span>&nbsp; 
+            What would you like to export?</h5>
+            <div  class="pt-2">
+            <label class="clout-switch">
+             <input type="checkbox">
+             <span class="clout-slider round"></span>
+            </label>
+            <label>
+            <p class="font-weight-bold">Show Highlights
+            </p>
+            </label>
+            <br>
+              <label class="clout-switch">
+             <input type="checkbox">
+             <span class="clout-slider round"></span>
+            </label>
+            <label>
+            <p class="font-weight-bold">Display Timestamps
+            </p>
+            </label>
+            <br>
+              <label class="clout-switch">
+             <input type="checkbox">
+             <span class="clout-slider round"></span>
+            </label>
+            <label>
+            <p class="font-weight-bold">Display Comments
+            </p>
+            </label>
+            <br>
+              <label class="clout-switch">
+             <input type="checkbox">
+             <span class="clout-slider round"></span>
+            </label>
+            <label>
+            <p class="font-weight-bold">Display Speaker Namess
+            </p>
+            </label>
+           </div>
+           </div>
+          <div class="text-center pt-3" style="display: grid;">
+        <button type="button" class="btn btn-primary font-weight-bold 
+            clout-export-folder" 
+           style="border: none;background-color: #233d63;">
+           Download
+         </button>
+         <button type="button" class="btn mt-2 btn-primary font-weight-bold clout-export-folder"data-dismiss="modal" aria-label="Close"
+           style="border: none;background-color: #233d63;">
+           Cancel
+         </button>
+        </div>
+         </div>
+       </div>
+      </div>
+      </div>
+      <div class="modal-header" style="border-bottom: none;"> 
+      </div>
+    </div>
+  </div>
+</div>
+<!--export files popup section end-->
+
+
+
+
+<!--share files popup section start-->
+<div class="modal fade" id="largeModalShare" tabindex="-1" role="dialog" 
+aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content clout-modal">
+      <div class="modal-header" style="border-bottom: none;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row mx-auto">
+       <div class="col-lg-12 mx-auto">
+         <div class="clout-audio-heading">
+           <div class="clout-export-files">
+            <h5 class="font-weight-bold" style="color: #000;"> 
+            Public Link</h5>
+            <div  class="pt-2">
+            <label class="clout-switch">
+             <input type="checkbox">
+             <span class="clout-slider round"></span>
+            </label>
+            <label>
+            <p class="font-weight-bold">Activate Sharing
+            </p>
+            </label>
+            <br>
+              <label class="clout-switch">
+             <input type="checkbox">
+             <span class="clout-slider round"></span>
+            </label>
+            <label>
+            <p class="font-weight-bold">Allow Editing
+            </p>
+            </label>
+           </div>
+            <select class="form-control">
+           <option>Text Document (.txt)</option>
+           <option>Word Document (.docx)</option>
+           <option>PDF Document (.pdf)</option>
+           <option>Subtitles (SubRip .srt)</option>
+           <option>Subtitles (WebVTT .vtt)</option>
+           <option>Subtitles (EBU-STL .stl)</option>
+           <option>Avid Markers (.txt)</option>
+           <option>Interactive Transcript (.html)</option>
+           <option>Premiere Pro Markers (.xml)</option>
+           <option>Final Cut Pro (.fcpxml)</option>
+           <option>Maxqda (.txt)</option>
+           <option>JSON (.json)</option>
+           </select>
+           <p class="pt-3">Anyone with this link can view the transcript, 
+           but not edit.</p>
+           <div class="text-center" style="display: grid;">
+         <button type="button" class="btn mt-2 btn-primary font-weight-bold clout-export-folder"data-dismiss="modal" aria-label="Close"
+           style="border: none;background-color: #233d63;">
+           Copy Link
+         </button>
+        </div>
+           
+           <hr class="my-4" style="border: 1px solid #000;">
+            <h5 class="font-weight-bold" style="color: #000;">
+            Embedded Transcript</h5> 
+            <p style="color: #000;">SEO Friendly</p>
+            <div  class="pt-2">
+            <label class="clout-switch">
+             <input type="checkbox">
+             <span class="clout-slider round"></span>
+            </label>
+            <label>
+            <p class="font-weight-bold">Activate Sharing
+            </p>
+            </label>
+            <br>
+              <label class="clout-switch">
+             <input type="checkbox">
+             <span class="clout-slider round"></span>
+            </label>
+            <label>
+            <p class="font-weight-bold">Show video
+            </p>
+            </label>
+            <br>
+              <label class="clout-switch">
+             <input type="checkbox">
+             <span class="clout-slider round"></span>
+            </label>
+            <label>
+            <p class="font-weight-bold">Allow viewer to download the video
+            </p>
+            </label>
+            <br>
+              <label class="clout-switch">
+             <input type="checkbox">
+             <span class="clout-slider round"></span>
+            </label>
+            <label>
+            <p class="font-weight-bold">Allow viewer to download the transcript
+            </p>
+            </label>
+           </div>
+           </div>
+          <div class="text-center pt-3" style="display: grid;">
+         <button type="button" class="btn mt-2 btn-primary font-weight-bold clout-export-folder"data-dismiss="modal" aria-label="Close"
+           style="border: none;background-color: #233d63;">
+           Generate Embed
+         </button>
+        </div>
+         </div>
+       </div>
+      </div>
+      </div>
+      <div class="modal-header" style="border-bottom: none;"> 
+      </div>
+    </div>
+  </div>
+</div>
+<!--share files popup section end-->
+
+
+           <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0" style="color: #233d63;font-weight: 700;"></h1>
+          </div>
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold" style="color: #233d63;">Table Format / User Data</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th class="clout-table">Product Name</th>
+                      <th class="clout-product-language">Language</th>
+                      <th class="clout-product-length" 
+                      style="text-decoration: underline;">Product Length</th>
+                      <th class="clout-date" style="text-decoration: underline;">
+                      Upload Date</th>
+                      <th class="clout-table">Status</th>
+                      <th class="clout-table">Action</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th class="clout-table">Product Name</th>
+                      <th class="clout-product-language">Language</th>
+                      <th class="clout-product-length" 
+                      style="text-decoration: underline;">Product Length</th>
+                      <th class="clout-date" style="text-decoration: underline;">
+                      Upload Date</th>
+                      <th class="clout-table">Status</th>
+                      <th class="clout-table">Action</th>
+                    </tr>
+                  </tfoot>
+
+
+                  <tbody>
+
+
+
+                  <tr>
+                      <td>8455-210777-0068.wav</td>
+                      <td class="clout-product-language">en-US</td>
+                      <td class="clout-product-length">1m</td>
+                      <td class="clout-date">2020/07/04</td>
+                      <td class="clout-lock text-center"><span>Locked</span></td>
+                      <td class="clout-view text-center">
+                      <ul class="navbar-nav ml-auto">
+                      <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-search fa-fw"></i>
+                        </a>
+                      <!-- Dropdown - Messages -->
+                      <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                    <form class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <img class="img-profile rounded-circle" src="./static/img/dots.png" 
+                style="height: 22px;">
+              </a>
+              <div class="dropdown-menu dropdown-menu-right shadow" 
+              aria-labelledby="userDropdown">
+                 <a class="dropdown-item font-weight-bold" href="openfile.html"
+                 target="_blank">
+                  Open
+                </a>
+                <a class="dropdown-item font-weight-bold" href="dashboard.html" data-toggle="modal" data-target="#largeModalShare">
+                  </i>
+                  Share
+                </a>
+                <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal" data-target="#largeModalExport">
+                  Export   
+                </a>
+                <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal"
+                data-target="#largeModalMove">
+                 Move
+                </a>
+                 <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal"
+                 data-target="#largeModalRename">
+                  Rename
+                </a>
+                <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal" onclick="myFunction()">
+                  Deletes
+                </a>
+              </div>
+            </li>
+          </ul>
+          </td>
+          </tr>
+          <tr>
+            <td>8455-210777-0068.wav</td>
+            <td class="clout-product-language">en-US</td>
+            <td class="clout-product-length">1m</td>
+            <td class="clout-date">2020/07/04</td>
+            <td class="text-center clout-pending "><span>Pending</span></td>
+            <td class="clout-view text-center">
+               <ul class="navbar-nav ml-auto">
+                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                    <li class="nav-item dropdown no-arrow d-sm-none">
+                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-search fa-fw"></i>
+                        </a>
+                      <!-- Dropdown - Messages -->
+                      <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                    <form class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <img class="img-profile rounded-circle" src="./static/img/dots.png" 
+                style="height: 22px;">
+              </a>
+              <div class="dropdown-menu dropdown-menu-right shadow" 
+              aria-labelledby="userDropdown">
+                 <a class="dropdown-item font-weight-bold" href="openfile.html"
+                 target="_blank">
+                  Open
+                </a>
+                <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal" data-target="#largeModalShare">
+                  </i>
+                  Share
+                </a>
+                <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal" data-target="#largeModalExport">
+                  Export
+                </a>
+                <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal"
+                data-target="#largeModalMove">
+                 Move
+                </a>
+                 <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal"
+                 data-target="#largeModalRename">
+                  Rename
+                </a>
+                <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal" onclick="myFunction()">
+                  Deletes
+                </a>
+              </div>
+            </li>
+          </ul>
+          </td>
+          </tr>
+         <tr>
+           <td>8455-210777-0068.wav</td>
+           <td class="clout-product-language">en-US</td>
+           <td class="clout-product-length">1m</td>
+           <td class="clout-date">2020/07/04</td>
+           <td class="clout-lock text-center"><span>Locked</span></td>
+           <td class="clout-view text-center">
+              <ul class="navbar-nav ml-auto">
+                      <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-search fa-fw"></i>
+                        </a>
+                      <!-- Dropdown - Messages -->
+                      <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                    <form class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <img class="img-profile rounded-circle" src="./static/img/dots.png" 
+                style="height: 22px;">
+              </a>
+              <div class="dropdown-menu dropdown-menu-right shadow" 
+              aria-labelledby="userDropdown">
+                 <a class="dropdown-item font-weight-bold" href="openfile.html"
+                 target="_blank">
+                  Open
+                </a>
+                <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal" data-target="#largeModalShare">
+                  </i>
+                  Share
+                </a>
+                <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal" data-target="#largeModalExport">
+                  Export
+                </a>
+                <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal"
+                data-target="#largeModalMove">
+                 Move
+                </a>
+                 <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal"
+                 data-target="#largeModalRename">
+                  Rename
+                </a>
+                <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal" onclick="myFunction()">
+                  Deletes
+                </a>
+              </div>
+            </li>
+          </ul>
+           </td>
+         </tr>
+         <tr>
+            <td>8455-210777-0068.wav</td>
+            <td class="clout-product-language">en-US</td>
+            <td class="clout-product-length">1m</td>
+            <td class="clout-date">2020/07/04</td>
+            <td class="clout-done text-center" ><span>Done</span></td>
+            <td class="clout-view text-center">
+           <ul class="navbar-nav ml-auto">
+                      <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+              <li class="nav-item dropdown no-arrow d-sm-none">
+                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-search fa-fw"></i>
+                        </a>
+                      <!-- Dropdown - Messages -->
+                      <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                    <form class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <img class="img-profile rounded-circle" src="./static/img/dots.png" 
+                style="height: 22px;">
+              </a>
+              <div class="dropdown-menu dropdown-menu-right shadow" 
+              aria-labelledby="userDropdown">
+                 <a class="dropdown-item font-weight-bold" href="openfile.html"
+                 target="_blank">
+                  Open
+                </a>
+                <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal" data-target="#largeModalShare">
+                  </i>
+                  Share
+                </a>
+                <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal" data-target="#largeModalExport">
+                  Export
+                </a>
+                <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal"
+                data-target="#largeModalMove">
+                 Move
+                </a>
+                 <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal"
+                 data-target="#largeModalRename">
+                  Rename
+                </a>
+                <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal" onclick="myFunction()">
+                  Deletes
+                </a>
+              </div>
+            </li>
+          </ul>
+            </td>
+          </tr>
+          <tr>
+           <td>8455-210777-0068.wav</td>
+           <td class="clout-product-language">en-US</td>
+           <td class="clout-product-length">1m</td>
+           <td class="clout-date">2020/07/04</td>
+           <td class="clout-done text-center"><span>Done</span></td>
+           <td class="clout-view text-center">
+               <ul class="navbar-nav ml-auto">
+                      <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-search fa-fw"></i>
+                        </a>
+                      <!-- Dropdown - Messages -->
+                      <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                    <form class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <img class="img-profile rounded-circle" src="./static/img/dots.png" 
+                style="height: 22px;">
+              </a>
+              <div class="dropdown-menu dropdown-menu-right shadow" 
+              aria-labelledby="userDropdown">
+                 <a class="dropdown-item font-weight-bold" href="openfile.html"
+                 target="_blank">
+                  Open
+                </a>
+                <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal" data-target="#largeModalShare">
+                  </i>
+                  Share
+                </a>
+                <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal" data-target="#largeModalExport">
+                  Export
+                </a>
+                <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal"
+                data-target="#largeModalMove">
+                 Move
+                </a>
+                 <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal"
+                 data-target="#largeModalRename">
+                  Rename
+                </a>
+                <a class="dropdown-item font-weight-bold" href="#" data-toggle="modal" onclick="myFunction()">
+                  Deletes
+                </a>
+              </div>
+            </li>
+          </ul>
+            </td>
+            </tr>
+              </tbody>
+                                    <tbody id="car_tbody">
+
+        
+                        </tbody>
+
+                </table>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer" style="background-color: #f48141;">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span style="color: #fff;font-weight: 700;
+            font-size: 18px">Copyright &copy; Cloutcube 2020</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <!-- Bootstrap core JavaScript-->
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
+    <!-- Page level plugins -->
+  <script src="{{ url_for('static', filename='vendor/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{{ url_for('static', filename='js/demo/datatables-demo.js') }}"></script>
+
+<script type="text/javascript">
+  function switchVisible() {
+            if (document.getElementById('mart-formed1')) {
+
+                if (document.getElementById('largeModal').style.display == 'none') {
+                    document.getElementById('largeModal').style.display = 'block';
+                    document.getElementById('largeModal01').style.display = 'none';
+                }
+                else {
+                    document.getElementById('largeModal').style.display = 'none';
+                    document.getElementById('largeModal01').style.display = 'block';
+                }
+            }
+}
+</script>
+
+<script>
+function myFunction() {
+  confirm("Are you sure you want to delete 1 items?");
+}
+</script>
+
+
+
+</body>
+
+</html>

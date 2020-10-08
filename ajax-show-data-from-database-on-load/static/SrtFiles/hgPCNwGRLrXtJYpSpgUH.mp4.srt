@@ -1,0 +1,332 @@
+1
+00:00:00.140 --> 00:00:03.310
+or writing guys get ready for the best Django tutorials
+
+2
+00:00:03.310 --> 00:00:11.380
+areas in the entire universe. So first things first
+
+3
+00:00:11.380 --> 00:00:13.910
+. What is Django exactly? Well, it's a
+
+4
+00:00:13.910 --> 00:00:18.000
+Web application framework built with python on a Framework is
+
+5
+00:00:18.000 --> 00:00:21.429
+basically a collection of modules. Pre written codes help
+
+6
+00:00:21.429 --> 00:00:24.100
+with a particular task. On Jang Go's case,
+
+7
+00:00:24.239 --> 00:00:27.719
+that task is building a Web up. So rather
+
+8
+00:00:27.719 --> 00:00:31.239
+than creating a full Web application from absolute scratch ourselves
+
+9
+00:00:31.320 --> 00:00:34.420
+using python trying to reinvent the wheel, we can
+
+10
+00:00:34.429 --> 00:00:37.549
+instead harness the power of the jungle framework to help
+
+11
+00:00:37.549 --> 00:00:40.869
+us out with things like user authentication, template in
+
+12
+00:00:40.880 --> 00:00:44.109
+routing and much, much more. So basically,
+
+13
+00:00:44.109 --> 00:00:47.500
+my Friends Jungle allows us to easily create dynamic Web
+
+14
+00:00:47.500 --> 00:00:51.759
+ups using python. Now imagine this scenario. We
+
+15
+00:00:51.759 --> 00:00:53.740
+have our client eyebrows over here, and we want
+
+16
+00:00:53.740 --> 00:00:56.619
+to make a request in this browser to a particular
+
+17
+00:00:56.619 --> 00:00:59.039
+profile page on a Web site. So we got
+
+18
+00:00:59.039 --> 00:01:00.469
+to my app dot com forward slash profile. Now
+
+19
+00:01:00.469 --> 00:01:03.750
+this website is be empowered by Django on the servant
+
+20
+00:01:04.000 --> 00:01:06.920
+. So over here on the service is where Django
+
+21
+00:01:06.920 --> 00:01:07.799
+is going to do all of its magic and really
+
+22
+00:01:07.799 --> 00:01:11.730
+help us out. So Jungle receives this request right
+
+23
+00:01:11.730 --> 00:01:14.719
+here, looks at it and says, Okay,
+
+24
+00:01:15.000 --> 00:01:17.370
+well, I know that you need to now communicate
+
+25
+00:01:17.370 --> 00:01:19.290
+with database to grab information for this profile, so
+
+26
+00:01:19.290 --> 00:01:22.230
+I'll help you do that. Jungle helps us with
+
+27
+00:01:22.230 --> 00:01:25.290
+this. Then it retrieves that data and says,
+
+28
+00:01:25.290 --> 00:01:26.569
+Right, What do you want to do with it
+
+29
+00:01:26.750 --> 00:01:27.090
+? You want to stick it into a hasty Mel
+
+30
+00:01:27.090 --> 00:01:30.310
+template? No problem. I'll help with that as
+
+31
+00:01:30.310 --> 00:01:32.950
+well. So it does that and sends that to
+
+32
+00:01:32.950 --> 00:01:34.069
+the browser to It helps with all of this kind
+
+33
+00:01:34.069 --> 00:01:38.390
+of service, and magic over here really makes creating
+
+34
+00:01:38.390 --> 00:01:42.200
+a Web application really simple. All right, And
+
+35
+00:01:42.200 --> 00:01:44.879
+so throughout this series will be using jungle to create
+
+36
+00:01:44.879 --> 00:01:47.140
+this block from the ground up. And along the
+
+37
+00:01:47.140 --> 00:01:48.840
+way, we're gonna learn about a lot of different
+
+38
+00:01:48.840 --> 00:01:52.019
+things, such as user authentication to implement some kind
+
+39
+00:01:52.019 --> 00:01:53.409
+of logging sign up system. We'll take a look
+
+40
+00:01:53.409 --> 00:01:57.200
+at jangle farms as well lost. Lots of other
+
+41
+00:01:57.200 --> 00:02:00.579
+different things, such as routing the jungle, are
+
+42
+00:02:00.579 --> 00:02:04.760
+M TEM plating and tonnes more so another good reason
+
+43
+00:02:04.760 --> 00:02:07.629
+to use Jango is because the jungle documentation is really
+
+44
+00:02:07.629 --> 00:02:09.740
+, really good. It's seconds it on whenever you
+
+45
+00:02:09.740 --> 00:02:12.930
+want to search for for example forms. It's gonna
+
+46
+00:02:12.930 --> 00:02:15.460
+have something to do with that on the documentation,
+
+47
+00:02:15.460 --> 00:02:16.379
+in fact, loads to do with that so you
+
+48
+00:02:16.379 --> 00:02:17.979
+can just click on whatever you like. I was
+
+49
+00:02:17.979 --> 00:02:21.810
+gonna give you loads of different examples and many tutorials
+
+50
+00:02:21.810 --> 00:02:23.159
+. Almost. Okay, so I would highly employ
+
+51
+00:02:23.159 --> 00:02:24.650
+you to cheque this out. If you do get
+
+52
+00:02:24.650 --> 00:02:28.229
+stuck on something, I'll leave the link down below
+
+53
+00:02:28.939 --> 00:02:30.699
+. Now, as always, are giving you all
+
+54
+00:02:30.699 --> 00:02:31.669
+of the course files for this Siri's. You can
+
+55
+00:02:31.669 --> 00:02:35.680
+find them on my Gig Harbour Repo Jungle Playlist.
+
+56
+00:02:35.689 --> 00:02:38.229
+The link is gonna be down below on DH.
+
+57
+00:02:38.240 --> 00:02:39.780
+I've doing a different branch for each different lessons.
+
+58
+00:02:39.780 --> 00:02:42.539
+So if you want to see the code for lesson
+
+59
+00:02:42.539 --> 00:02:44.409
+five, for example, you need to select the
+
+60
+00:02:44.409 --> 00:02:46.810
+lesson five brunch and you can find all the cold
+
+61
+00:02:46.990 --> 00:02:50.050
+inside hit. All right, So just a couple
+
+62
+00:02:50.050 --> 00:02:52.490
+more things I am gonna be using Atom for this
+
+63
+00:02:52.490 --> 00:02:54.289
+Siri's. It's a really cool free text editor.
+
+64
+00:02:54.289 --> 00:02:57.150
+So I employ you to download that as well.
+
+65
+00:02:57.310 --> 00:03:00.069
+You can find it at atom dot I hope I'm
+
+66
+00:03:00.069 --> 00:03:02.789
+also gonna be using Cmdr. Or Commander that is
+
+67
+00:03:02.800 --> 00:03:05.810
+a consul emulator for Windows. You don't have to
+
+68
+00:03:05.810 --> 00:03:07.800
+use this idea because I think it's quite cool.
+
+69
+00:03:07.860 --> 00:03:09.069
+But if you prefer to use the default on Windows
+
+70
+00:03:09.069 --> 00:03:12.650
+one automatic one, that's absolutely fine as well.
+
+71
+00:03:13.340 --> 00:03:15.460
+Now, because jungle uses python, you will need
+
+72
+00:03:15.460 --> 00:03:19.030
+python installed on your computer Before you start this.
+
+73
+00:03:19.030 --> 00:03:23.259
+Siris on DH probably advise you to learn a little
+
+74
+00:03:23.259 --> 00:03:24.539
+bit about the python basics before you start this Siri's
+
+75
+00:03:24.550 --> 00:03:27.419
+as well. So if you want to do that
+
+76
+00:03:27.419 --> 00:03:29.560
+, you want to cheque out my python three tutorial
+
+77
+00:03:29.560 --> 00:03:30.430
+for beginners. Siri's I'm gonna Leave the Link Down
+
+78
+00:03:30.430 --> 00:03:34.289
+below. That shows you how to instal Python along
+
+79
+00:03:34.289 --> 00:03:36.240
+with a lot of the basics of python as well
+
+80
+00:03:36.409 --> 00:03:38.120
+, and that is going to give you a good
+
+81
+00:03:38.310 --> 00:03:40.150
+base work for the rest of this series right here
+
+82
+00:03:40.639 --> 00:03:42.879
+. So now we've got that out of the way
+
+83
+00:03:42.879 --> 00:03:46.139
+. Let's crack on and start created this block with
+

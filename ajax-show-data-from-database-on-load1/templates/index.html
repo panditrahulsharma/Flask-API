@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="./static/static.css">
+<script src="./static/data.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+<div class="container">
+	<h1>Show data from database on page load using flask, ajax and jquery</h1>
+
+
+<table>
+    <thead>
+    <tr>
+      <th scope="col">name</th>
+      <th scope="col">Length</th>
+      <th scope="col">language</th>
+      <th scope="col">upload</th>
+      <th scope="col">status</th>
+    </tr>
+  </thead>
+
+	<tbody id="car_tbody">
+		
+	</tbody>
+
+</table>
+
+
+
+<form id="upload-file" method="post" enctype="multipart/form-data">
+
+ <input id="file-upload" type="file" name="files[]" multiple="multiple" accept="video/mp4,video/x-m4v,video/*,audio/*" class="form-control" required="" />
+             <span class="font-weight-bold">2.</span>&nbsp; 
+            Select the language spoken</h5><br/>
+           <select class="form-control" name="language" id="SelectLanguage">
+           <option value="English(United Kingdom)">English(United Kingdom)</option>
+           <option value="English(United States)">English(United States)</option>
+           <option value="English(Multiple Accents)">English(Multiple Accents)</option>
+           <option value="Spanish(Spain)">Spanish(Spain)</option>
+           <option value="Catalan(Spain)">Catalan(Spain)</option>
+           <option value="French(France)">French(France)</option>
+           </select>
+<button type="button" class="btn btn-primary font-weight-bold clout-proceed" id="upload-file-btn1">Proceed</button>
+
+</form>
+
+</div>
+
+
+
+</body>
+</html>

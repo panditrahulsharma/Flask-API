@@ -1,0 +1,272 @@
+1
+00:00:01.040 --> 00:00:04.540
+hi, everyone. So this syriza videos is going
+
+2
+00:00:04.540 --> 00:00:08.050
+to be going over a Web framework technology called Django
+
+3
+00:00:08.539 --> 00:00:13.419
+. So Django is this thing which essentially allows you
+
+4
+00:00:13.419 --> 00:00:15.779
+to make dynamic websites. Now. What that means
+
+5
+00:00:15.779 --> 00:00:19.440
+is we could make websites now through Django that will
+
+6
+00:00:19.440 --> 00:00:22.530
+allow us to store things in a database load pages
+
+7
+00:00:22.530 --> 00:00:26.670
+dynamically based on what's in the database, and also
+
+8
+00:00:26.670 --> 00:00:29.289
+do a lot of different cool things in terms of
+
+9
+00:00:29.300 --> 00:00:32.590
+making an actual living breathing website. In the previous
+
+10
+00:00:32.590 --> 00:00:35.479
+Siri's, we made static websites using just HTML,
+
+11
+00:00:35.479 --> 00:00:39.000
+CSS and JavaScript. Those were all front and technologies
+
+12
+00:00:39.000 --> 00:00:41.619
+that run in the browser. Django is a Web
+
+13
+00:00:41.619 --> 00:00:44.630
+server built on python, which will be running in
+
+14
+00:00:44.630 --> 00:00:48.649
+a server and basically handling requests to our website.
+
+15
+00:00:49.240 --> 00:00:50.750
+So this will make a lot more sense once we
+
+16
+00:00:50.750 --> 00:00:53.049
+actually get into it. But remember, from our
+
+17
+00:00:53.049 --> 00:00:57.750
+howto how the Internet works lecture that basically, when
+
+18
+00:00:57.750 --> 00:01:00.689
+someone goes to a website, it takes the Europa
+
+19
+00:01:00.700 --> 00:01:03.969
+and basically makes a request to that girl to the
+
+20
+00:01:03.969 --> 00:01:07.349
+Web server. The Web server is basically, um
+
+21
+00:01:08.040 --> 00:01:11.170
+, what we're gonna be writing using Django. You
+
+22
+00:01:11.170 --> 00:01:14.099
+might have heard of some different technologies such as ruby
+
+23
+00:01:14.099 --> 00:01:18.430
+on rails or maybe no Js those air. Essentially
+
+24
+00:01:19.370 --> 00:01:21.909
+other Web frameworks for B is ruby on rails is
+
+25
+00:01:21.909 --> 00:01:25.099
+Britain, and Ruby Note is Britain and JavaScript and
+
+26
+00:01:25.099 --> 00:01:26.730
+Python is the Web frame where Django is the Web
+
+27
+00:01:26.730 --> 00:01:30.209
+framework. Python is written, written in Python.
+
+28
+00:01:30.739 --> 00:01:34.569
+There's also something called Flask, which is essentially a
+
+29
+00:01:34.569 --> 00:01:36.540
+more lightweight version of it. But Django is the
+
+30
+00:01:36.540 --> 00:01:38.219
+one I like to use, because once you know
+
+31
+00:01:38.219 --> 00:01:40.670
+how to use it, it provides a lot of
+
+32
+00:01:40.670 --> 00:01:42.599
+powerful functionality right out of the box. The thing
+
+33
+00:01:42.599 --> 00:01:45.340
+is, is that it's actually a little bit of
+
+34
+00:01:45.340 --> 00:01:48.010
+a challenge to learn if you don't have someone guiding
+
+35
+00:01:48.010 --> 00:01:49.870
+you through the process. So that's kind of the
+
+36
+00:01:49.870 --> 00:01:51.810
+goal of these videos for me, because when I
+
+37
+00:01:51.810 --> 00:01:53.459
+tried to learn Django, it took me basically like
+
+38
+00:01:53.459 --> 00:01:56.930
+five failed attempts, and I kept trying to learn
+
+39
+00:01:56.930 --> 00:01:59.620
+and trying to learn it never got it, until
+
+40
+00:01:59.620 --> 00:02:01.170
+finally someone helped me learn on an internship that I
+
+41
+00:02:01.170 --> 00:02:05.030
+did. So hopefully through these videos, you'll be
+
+42
+00:02:05.030 --> 00:02:07.549
+able to get that initial push that you need to
+
+43
+00:02:07.549 --> 00:02:09.639
+really understand what's going on in order to cheque out
+
+44
+00:02:09.650 --> 00:02:14.150
+Jango. Just it's spelled like this deejay angio.
+
+45
+00:02:14.740 --> 00:02:16.669
+If you type it in, then first thing we
+
+46
+00:02:16.669 --> 00:02:21.430
+get is Django the Web framework for something or the
+
+47
+00:02:21.430 --> 00:02:23.629
+other perfectionists with the deadline, I would not call
+
+48
+00:02:23.629 --> 00:02:27.639
+myself a perfectionist, but I do have deadlines.
+
+49
+00:02:27.639 --> 00:02:30.789
+So this makes sense. Um, as you can
+
+50
+00:02:30.789 --> 00:02:32.090
+see, it has stuff you can download it.
+
+51
+00:02:32.090 --> 00:02:35.699
+Love of law. So on. So, yeah
+
+52
+00:02:35.830 --> 00:02:38.650
+, Next videos, we're gonna be talking about basically
+
+53
+00:02:38.039 --> 00:02:40.969
+building a website using Django, and we'll be building
+
+54
+00:02:40.969 --> 00:02:44.759
+a specific type of website, um, to kind
+
+55
+00:02:44.759 --> 00:02:46.620
+of guide our discussion through the features that Django has
+
+56
+00:02:46.810 --> 00:02:49.889
+. And the great thing is that once you learn
+
+57
+00:02:49.900 --> 00:02:52.849
+one web framework like Django, it's then really easy
+
+58
+00:02:52.849 --> 00:02:53.789
+to learn other ones, like Ruby on Rose or
+
+59
+00:02:53.789 --> 00:02:58.020
+tto learn no Js or to learn flask. Because
+
+60
+00:02:58.030 --> 00:03:00.409
+all of those web frameworks all any Web framer really
+
+61
+00:03:00.409 --> 00:03:02.870
+has, like, a set of specific things that
+
+62
+00:03:02.870 --> 00:03:06.490
+it has to do a set of core functionalities.
+
+63
+00:03:06.569 --> 00:03:07.120
+And once you know what those are, you know
+
+64
+00:03:07.120 --> 00:03:08.759
+what to look for in a new one that you
+
+65
+00:03:08.759 --> 00:03:10.949
+don't know. So it becomes a lot easier to
+
+66
+00:03:10.949 --> 00:03:14.129
+pick them. So hopefully, by learning how to
+
+67
+00:03:14.129 --> 00:03:15.710
+build with Django, you'll actually be well equipped to
+
+68
+00:03:15.710 --> 00:03:17.949
+do a lot of different things using Web development.
+
