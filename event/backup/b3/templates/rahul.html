@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>create dynmic id</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<style type="text/css">
+	.dvBlock {
+  width: 350px;
+  height: 80px;
+  border: 1px solid black;
+  padding: 5px 5px;
+}
+
+[id*="li_engraving_txt_"].element {
+  border: 1px solid red;
+}
+</style>
+
+<script type="text/javascript">
+	//This function is simply to manipulate the dynamic html
+//that you will be generating with your PHP code
+var clipboardsCount = 3;
+$(function() {
+  for (var i = 0; i < clipboardsCount; i++) {
+    var select = $('<div class="dvBlock"><select name="engravingOption[]" id="engravingOption_' + i + '" class="engravingOptions" ><option value="No">No</option><option value="Yes">Yes</option></select><div style="display:none;" id="li_engraving_txt_' + i + '"><div id="divcount_' + i + '" >DisDv</div></div></div><br />');
+    $('.container').append(select);
+  }
+});
+
+//change event for existing/dynamically created select 
+$(document).on('change', 'select.engravingOptions', function() {
+  //extracting the index from id
+  alert($(this).attr('id'))
+  var index = $(this).attr('id').replace('engravingOption_', '');
+
+  //getting the selected value of select
+  var value = $(this).val();
+
+  //input control to append
+  var engraving_li = "<input type='text' id='engraving_txt_" + index + "' name='engraving_text[]' class='element text form-control' maxlength='20' placeholder='Engraving here (20 words)'  />";
+
+  if (value == 'No') {
+    $('#li_engraving_txt_' + index).hide();
+    $('#engraving_txt_' + index).remove();
+    $(engraving_li).remove();
+  } else if (value == 'Yes') {
+    $('#li_engraving_txt_' + index).show();
+    $('#engraving_txt_' + index).show();
+
+    //inserting the control, just before div(divcount_) corresponding
+    //to selected section.
+    $(engraving_li).insertBefore("#divcount_" + index);
+  }
+});
+</script>
+
+</head>
+<body>
+
+
+<div class="container"></div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("input").change(function(){
+
+		const format = $('#textdata').val();
+		// alert("The text has been changed.="+format);
+
+          let data={format:format}
+          $('#result').html('updating...');
+          $.ajax({
+            url:"/ajax_post",
+            type:'post',
+            data:data
+
+          })
+            .done(function( res )
+            {
+
+
+      		if ( res.sucess ) {
+				$('#result').html(res.name);
+              }
+              else
+              {
+                $('#error').html(res.error);
+              }
+            });
+
+
+  });
+});
+</script>
+</head>
+<body>
+
+<input type="text" id="textdata">
+
+<p id="error"></p>
+
+<p id="result"></p>
+
+</body>
+</html>
