@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Attendence System</title>
+    
+    <link rel="stylesheet" href="./static/assets/css/bootstrap.css">
+    
+    <link rel="stylesheet" href="./static/assets/vendors/chartjs/Chart.min.css">
+    <link rel="stylesheet" href="./static/assets/vendors/custom_chart/chart.css">
+
+    <link rel="stylesheet" href="./static/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="./static/assets/css/app.css">
+    <link rel="shortcut icon" href="./static/assets/images/logo1.png" type="image/x-icon">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<script type="text/javascript">
+
+
+function fetchdata(){
+ $.ajax({
+  url: '/ajax_get',
+  type: 'post',
+  success: function(data){
+   // Perform operation on return value
+    $('#randomstr').html(data.randomstr);
+    DesboardData=''
+    DesboardData+='<tr>';
+    DesboardData+='<td>'+data.name+'</td>';
+    DesboardData+='<td>'+data.email+'</td>';
+    DesboardData+='<td>'+data.contact+'</td>';
+    DesboardData+='</tr>';
+    $('#Attandencetable').append(DesboardData);
+  },
+  complete:function(data){
+   setTimeout(fetchdata,5000);
+  }
+ });
+}
+
+$(document).ready(function(){
+ setTimeout(fetchdata,5000);
+});
+
+
+</script>
+
+</head>
+<body>
+    <div id="app">
+        <div id="sidebar" class='active'>
+            <div class="sidebar-wrapper active">
+    <div class="sidebar-header">
+        <img src="./static/assets/images/logo1.png" alt="" srcset="">
+    </div>
+    <div class="sidebar-menu">
+        <ul class="menu">
+            
+            
+                <li class='sidebar-title'>Main Menu</li>
+            
+            
+            
+                  <li class="sidebar-item active ">
+                    <a href="/thanks" class='sidebar-link'>
+                        <i data-feather="home" width="20"></i> 
+                        <span>Dashboard</span>
+                    </a>
+                    
+                </li>
+
+            
+                 <li class="sidebar-item active ">
+                    <a href="/live" class='sidebar-link'>
+                        <i data-feather="home" width="20"></i> 
+                        <span>Live Attendance</span>
+                    </a>
+                    
+                </li>
+
+            
+
+                <li class="sidebar-item active ">
+                    <a href="index.html" class='sidebar-link'>
+                        <i data-feather="home" width="20"></i> 
+                        <span>Register</span>
+                    </a>
+                    
+                </li>
+
+            
+         
+        </ul>
+    </div>
+    <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+</div>
+        </div>
+        <div id="main">
+            <nav class="navbar navbar-header navbar-expand navbar-light">
+                <a class="sidebar-toggler" href="#"><span class="navbar-toggler-icon"></span></a>
+                <button class="btn navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </nav>
+          
+
+
+
+<div class="main-content container-fluid">
+
+<div class="row" id="basic-table">
+     <h3>Live Camera</h3>
+          <div class="col-12 col-md-6">
+
+                        <div class="card">
+                            <div class="card-content">
+                                <img class="card-img-top img-fluid" src="./static/assets/images/r.jpeg"
+                                    alt="Card image cap" style="height: 500px" />
+
+                            </div>
+                        </div>
+
+          </div>
+
+
+  <div class="col-12 col-md-6">
+    <div class="card">
+      <div class="card-header">
+         <h3><p id="randomstr"></p></h3>
+        <h4 class="card-title">Employee Attandence</h4>
+      </div>
+      <div class="card-content">
+
+
+        <!-- Table with no outer spacing -->
+        <div class="table-responsive">
+             <table class="table">
+              <thead>
+                <tr>
+                  <th>Employee ID</th>
+                  <th>Email</th>
+                  <th>Contact</th>
+                </tr>
+              </thead>
+              <tbody id="Attandencetable">
+ 
+
+<!--                 <tr>
+                <td>amit</td>
+                <td>fringilla.enim@quam.ca</td>
+                <td>0500527693</td>
+                </tr>
+
+                <tr>
+                <td>naveen</td>
+                <td>mi.Duis@diam.edu</td>
+                <td>(012165)76278</td>
+                </tr> -->
+
+
+              </tbody>
+            </table>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-left">
+                        <p>2020 &copy; Metaorigins Lab</p>
+                    </div>
+
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="./static/assets/js/feather-icons/feather.min.js"></script>
+    <script src="./static/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="./static/assets/js/app.js"></script>
+
+    <script src="./static/assets/vendors/chartjs/Chart.min.js"></script>
+    <script src="./static/assets/vendors/apexcharts/apexcharts.min.js"></script>
+
+    <script src="./static/assets/js/pages/dashboard.js"></script>
+    <script src="./static/assets/js/main.js"></script>
+</body>
+</html>
+
