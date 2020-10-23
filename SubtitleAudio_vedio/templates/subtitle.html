@@ -1,0 +1,275 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <style type="text/css">
+
+    </style>
+    <!-- Required meta tags -->
+    <title>Playing a local video</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Hello, world!</title>
+
+<style type="text/css">
+    
+table.scroll {
+    width: 100%; /* Optional */
+    /* border-collapse: collapse; */
+    border-spacing: 0;
+    border: 2px solid black;
+}
+
+table.scroll tbody,
+table.scroll thead { display: block; }
+
+thead tr th { 
+    height: 30px;
+    line-height: 30px;
+    /*text-align: left;*/
+}
+
+table.scroll tbody {
+    height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+tbody { border-top: 2px solid black; }
+
+tbody td, thead th {
+    width: 20%; /* Optional */
+    border-right: 1px solid black;
+}
+
+tbody td:last-child, thead th:last-child {
+    border-right: none;
+}    
+
+</style>
+
+
+
+
+  </head>
+  <body >
+
+
+        <div class="row">
+
+<!-- <div class="overflow-auto">...</div> -->
+
+          <div class="col-sm-8" >
+            <div class="card" class="overflow-auto">
+
+            <table class="table table-striped " class="scroll">
+                  <thead>
+                    <tr>
+                      <th scope="col">Start Time</th>
+                      <th scope="col">End Time</th>
+                      <th scope="col">Text</th>
+                    </tr>
+                  </thead>
+                  <tbody id="text_tbody">
+
+                  </tbody>
+            </table>
+
+
+            </div>
+          </div>
+
+          <div class="col-sm-4" >
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Subtitle Vedio</h5>
+
+
+
+
+                <video controls width="100%" height="100%" id="SourceFile" crossorigin="anonymous" >
+                    <source src="http://localhost:5000/static/rpa.mp4" type="video/mp4">
+                </video>
+
+
+                            <!-- <p>Playback position: <span id="demo"></span></p> -->
+
+    <!--                 <audio controls id="SourceFile" width="100%" height="100%">
+                      <source src="http://localhost:5000/static/rpa.mp4" type="audio/mpeg">
+                    </audio> -->
+
+
+
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+
+
+
+
+<script>
+
+
+            jQuery.extend({
+            getValues: function(url) {
+                var result = null;
+                $.ajax({
+                    url: url,
+                    type: 'get',
+                    // dataType: 'xml',
+                    async: false,
+                    success: function(data) {
+                        result = data;
+                    }
+                });
+
+                // document.getElementById("Mysubtitle").innerHTML = result;
+               return result;
+            }
+        });
+
+        var syncData = $.getValues("http://localhost:5000/static/rpa.srt");
+        //all works start here
+
+        function parse_timestamp(s) {
+            var match = s.match(/^(?:([0-9]{2,}):)?([0-5][0-9]):([0-5][0-9][.,][0-9]{0,3})/);
+            if (match == null) {
+                throw 'Invalid timestamp format: ' + s;
+            }
+            var hours = parseInt(match[1] || "0", 10);
+            var minutes = parseInt(match[2], 10);
+            var seconds = parseFloat(match[3].replace(',', '.'));
+            return seconds + 60 * minutes + 60 * 60 * hours;
+        }
+
+
+        function quick_and_dirty_vtt_or_srt_parser(vtt) {
+            var lines = vtt.trim().replace('\r\n', '\n').split(/[\r\n]/).map(function(line) {
+                return line.trim();
+            });
+
+
+            
+
+        var cues = [];
+        var start = null;
+        var end = null;
+        var payload = null;
+
+        var MyTextData=''; //for table purpose
+
+        for (var i = 0; i < lines.length; i++) {
+
+            // console.log(lines[i],"-------------->")
+
+            if (lines[i].indexOf('-->') >= 0) {
+                var splitted = lines[i].split(/[ \t]+-->[ \t]+/);
+                if (splitted.length != 2) {
+                    throw 'Error when splitting "-->": ' + lines[i];
+                }
+
+                // Already ignoring anything past the "end" timestamp (i.e. cue settings).
+                start = parse_timestamp(splitted[0]);
+                end = parse_timestamp(splitted[1]);
+
+            } else if (lines[i] == '') {
+                if (start && end) {
+                    // alert(payload)
+
+                    // payload is text
+                    var cue = new VTTCue(start, end, payload);
+
+                    // console.log(cue)
+
+                  MyTextData+='<tr>';
+                  MyTextData+='<td style="color:black">'+splitted[0]+'</td>';
+                  MyTextData+='<td style="color:black">'+splitted[1]+'</td>';
+                  MyTextData+='<td id="'+end+'" style="color:black">'+cue['text']+'</td>';
+                  MyTextData+='</tr>';
+
+                    cues.push(cue);
+                    start = null;
+                    end = null;
+                    payload = null;
+                }
+            } else if(start && end) {
+                if (payload == null) {
+                    payload = lines[i];
+                } else {
+                    payload += '\n' + lines[i];
+                }
+            }
+        }
+
+
+
+
+        $('#text_tbody').append(MyTextData);
+
+        return cues;
+    }
+
+    function init() {
+
+        var SourceFileData = document.getElementById("SourceFile");;
+        var subtitle = syncData;
+        var track = SourceFileData.addTextTrack('subtitles', 'English', 'en');
+
+        // console.log(track)
+
+        track.mode = "showing";
+        quick_and_dirty_vtt_or_srt_parser(subtitle).map(function(cue) {
+            track.addCue(cue);
+        });
+
+
+    //starting of highlighting
+    SourceFileData.ontimeupdate = function() {myFunction()};
+
+
+    function myFunction() {
+
+
+        var Data=quick_and_dirty_vtt_or_srt_parser(subtitle)
+
+        for (var i = 0; i < Data.length; i++) {
+            // Things[i]
+            if ((Data[i]['startTime']<= SourceFileData.currentTime) && (Data[i]['endTime'] > SourceFileData.currentTime)) {
+
+                // document.getElementsByTagName('td').style.color = "#FF0000";
+             document.getElementById(Data[i]['endTime']).style.color = "blue";
+
+            }
+
+
+        }
+
+    }
+
+
+
+
+
+    }
+
+    init();
+
+
+
+
+
+</script>
+
+
+
+  </body>
+</html>
+
+
