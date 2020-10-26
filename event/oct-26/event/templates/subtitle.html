@@ -115,9 +115,11 @@ tbody td:last-child, thead th:last-child {
 
 
 
+    // for changing purpose
+
             function onchangefunction(content)
             {
-                var new_value = content.value;
+                
 
 
                     var new_id = content.id;
@@ -125,14 +127,17 @@ tbody td:last-child, thead th:last-child {
 
                     // now replce new id to old id and get original value
 
-                    old_id=new_id.replace('change','old')
+                    var old_id=new_id.replace('change','old');
 
-                    old_value = $('#'+old_id).val(); 
-                    // alert("old value="+old_value)
+                    var old_value = $('#'+old_id).val(); 
+
+                    var new_value = content.value;
+
+                    // alert(old_id+"-"+new_id)
 
                     let data={new_value:new_value,old_value:old_value}
 
-                    $('#'+new_id).val('saving...')
+                    $('#'+new_id).val('saving...');
 
                   $('#result').html('saving....');
                   $.ajax({
@@ -146,7 +151,6 @@ tbody td:last-child, thead th:last-child {
                     if ( res.sucess ) {
 
                         $('#result').html('');
-
                         $('#'+new_id).val(res.data1);
                         $('#'+old_id).val(res.data2);
                       }
@@ -159,7 +163,7 @@ tbody td:last-child, thead th:last-child {
 
             }
 
-
+    // end of change function
 
             jQuery.extend({
             getValues: function(url) {
@@ -233,22 +237,23 @@ tbody td:last-child, thead th:last-child {
                     // console.log(cue)
                     random_id_start=makeid(20);
                     random_id_end=makeid(20);
-                    random_id_text=makeid(20);
+
+                    // alert(typeof end)
+                    var newstringId = end.toString().split('.').join('').split(',').join(''); //remove dot and comma 
 
 
 
                 MyTextData+='<tr>';
-                MyTextData+='<td  style="color:black"><input type="text" id="'+random_id_start+'change" onchange="onchangefunction(this)" value="'+splitted[0]+'"></td>';
+                MyTextData+='<td  ><input type="text" id="'+random_id_start+'change" onchange="onchangefunction(this)" value="'+splitted[0]+'" style="color:black"></td>';
                 MyTextData+='<input type="hidden" id="'+random_id_start+'old" value="'+splitted[0]+'">';
 
-                MyTextData+='<td  style="color:black"><input type="text" id="'+random_id_end+'change" onchange="onchangefunction(this)" value="'+splitted[1]+'"></td>';
+                MyTextData+='<td ><input type="text" id="'+random_id_end+'change" onchange="onchangefunction(this)" value="'+splitted[1]+'" style="color:black"></td>';
                 MyTextData+='<input type="hidden" id="'+random_id_end+'old" value="'+splitted[1]+'">';
 
-                MyTextData+='<td ><textarea id="'+end+'change" onchange="onchangefunction(this)" style="color:black">'+cue['text']+'</textarea></td>';
-                MyTextData+='<input type="hidden" id="'+end+'old" value="'+cue['text']+'">';
-
+                MyTextData+='<td><textarea id="'+newstringId+'change" onchange="onchangefunction(this)" style="color:black" >'+cue['text']+'</textarea></td>';
+                MyTextData+='<input type="hidden" id="'+newstringId+'old" value="'+cue['text']+'">';
+                
                 MyTextData+='</tr>';
-
 
 
                     cues.push(cue);
@@ -301,7 +306,9 @@ tbody td:last-child, thead th:last-child {
             if ((Data[i]['startTime']<= SourceFileData.currentTime) && (Data[i]['endTime'] > SourceFileData.currentTime)) {
 
                 // document.getElementsByTagName('td').style.color = "#FF0000";
-             document.getElementById(Data[i]['endTime']+'change').style.color = "blue";
+                    var newstringId = Data[i]['endTime'].toString().split('.').join('').split(',').join(''); //remove dot and comma 
+
+             document.getElementById(newstringId+'change').style.color = "blue";
 
             }
 
@@ -315,6 +322,7 @@ tbody td:last-child, thead th:last-child {
     }
 
     init();
+
 
 
 

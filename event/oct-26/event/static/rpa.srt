@@ -1,16 +1,14 @@
 ﻿1
-00:00:00,920 --> 00:00:01,720
-rpa is the software r
+00:00:01,123 --> 00:00:02,222
+rahul
 
 2
 00:00:02,158 --> 00:00:06,159
-technology tsdoiioiijhat performs transactional
-activities in I.T. appligkgjrgekrjcations in the way
+pandit
 
 3
 00:00:06,160 --> 00:00:09,600
-a user would,
-all RPA applications have the followbbn
+django rpa
 
 4
 00:00:09,800 --> 00:00:12,717

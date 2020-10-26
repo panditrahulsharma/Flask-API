@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+                <td><textarea id="2_7change" class="2.7new" onchange="onchangefunction(this)" style="color:black" >this is task</textarea></td>
+                <input type="hidden" id="2_7old" value="thus is task" class="2.7old rnfkj fewifjowei">
+                
+<script>
+
+// for changing purpose
+
+            function onchangefunction(content)
+            {
+                
+
+		var new_id = content.id;
+
+		var old_id=new_id.replace('change','old');
+
+		var old_value = $('#'+old_id.trim()).val(); 
+
+		//alert(old_value)
+		 alert(old_id)
+
+
+
+		var new_value = content.value;
+
+		let data={new_value:new_value,old_value:old_value}
+
+		$('#'+new_id).val(new_value);
+		$('#'+old_id).val(new_value);
+
+
+            }
+
+
+
+
+// document.getElementById("fname").onchange = function() {myFunction()};
+
+// function myFunction() {
+//   var x = document.getElementById("fname");
+//   x.value = x.value.toUpperCase();
+// }
+</script>
+
+</body>
+</html>
