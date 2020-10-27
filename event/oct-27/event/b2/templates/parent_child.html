@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>get parent and chid value</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+
+<style type="text/css">
+	table {
+  border: 1px solid black;
+}
+
+th, td {
+  border: 1px solid black;
+}
+</style>
+
+</head>
+<body>
+<table>
+
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>ID</th>
+
+    <th>ID</th>
+    <th>ID</th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr>
+    <td >Margaret Nguyen</td>
+    <td><input type="text" value="427311" id="p1"></td>
+    <td><input type="text" value="601942"></td>
+    <td><input type="text" value="111"></td>
+  </tr>
+
+  <tr>
+    <td >Edvard Galinski</td>
+   <td> <input type="text" value="533175" ></td>
+   <td><input type="text" value="601942"></td>
+   <td><input type="text" value="112" id="p2"></td>
+
+  </tr>
+
+  <tr>
+    <td>Hoshi Nakamura</td>
+    <td><input type="text" value="601942" id="p3"></td>
+    <td><input type="text" value="601942"></td>
+    <td><input type="text" value="113"></td>
+  </tr>
+</tbody>
+
+</table>
+
+
+<script type="text/javascript">
+  
+  mid=document.getElementById('p1')
+ 
+  console.log(mid.value)
+
+  console.log(mid.parentNode.parentElement.previousElementSibling.cells[3].lastChild.value)
+
+  console.log(mid.parentNode.parentElement.nextElementSibling.cells[3].lastChild.value)
+
+
+</script>
+</body>
+</html>
