@@ -1,0 +1,295 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>JavaScript Audio Sync With Text</title>
+  <link href='//fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="description" content="JavaScript Audio Sync With Text - Demo">
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+
+  </head>
+<body>
+
+  <header>
+    <h1 class="heading">Demo 1: JavaScript Audio Sync With Text</h1>
+  </header>
+
+<p id="result"></p>
+
+  <div class="naturallanguageform">
+    <div class="nlfinner">
+
+      {% if fileFormat%}
+
+
+      <video id="audiofile" width="320" height="176" controls>
+         <source src="http://localhost:5000/static/k.mp4" type="video/mp4">
+         <!-- <source src="mov_bbb.ogg" type="video/ogg"> -->
+       </video>
+
+
+      {% else %}
+
+      <p class="line">
+        <audio style="width:100%;" id="audiofile" src="http://localhost:5000/static/k.mp4" controls></audio>
+      </p>
+
+
+      {% endif%}
+
+
+      <table>
+          <thead>
+            <tr>
+              <td>Speaker</td>
+              <td>text</td>
+
+            </tr>
+          </thead>
+          <tbody id="transcriptData">
+            
+          </tbody>
+
+      </table>
+
+
+    </div>
+  </div>
+
+
+  <script>
+
+
+      function makeid(length) {
+         var result           = '';
+         var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+         var charactersLength = characters.length;
+         for ( var i = 0; i < length; i++ ) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+         }
+         return result;
+      }
+
+
+      function changeData(data,id_data)
+            {
+
+                  $('#result').html('saving..');
+                  $.ajax({
+                    url:"/TranscriptSpeakerEditable",
+                    type:'post',
+                    data:data
+
+                  })
+                    .done(function( res )
+                    {
+                    if ( res.sucess ) {
+
+                        $('#result').html('');
+                        $('#'+id_data.new_id).val(res.data1);
+                        $('#'+id_data.old_id).val(res.data2);
+                        document.getElementById(id_data.old_id).setAttribute('value',res.data2);
+                        document.getElementById(id_data.new_id).setAttribute('value',res.data1);
+                      }
+                      else
+                      {
+                        $('#error').html(res.error);
+                      }
+                    });
+
+            }
+
+
+
+
+    function onchangefunction(content)
+            {
+
+                    var new_id = content.id;
+
+                    var old_id=new_id.replace('change','old');
+
+                    var old_value = $('#'+old_id).val();
+
+                    var new_value = content.value;
+
+                  // console.log(new_value+"->"+old_value)
+
+                    let data={new_value:new_value,old_value:old_value,fileName:'{{fileName}}'}
+
+                    let id_data={old_id:old_id,new_id:new_id}
+
+                    changeData(data,id_data)
+
+      }
+
+
+
+        ( function(win, doc) {
+
+
+
+// get data from file ================================================================================================
+
+                      jQuery.extend({
+                        getValues: function(url) {
+                          var result = null;
+                          $.ajax({
+                              url: url,
+                              type: 'get',
+                              async: false,
+                              success: function(data) {
+                                  result = data;
+                              }
+                          });
+
+                         return result;
+                        }
+                        });
+
+                        var syncDatafile = $.getValues('{{fileName}}');
+
+                        console.log(syncDatafile)
+
+                        // alert(syncDatafile)
+
+
+                         var transcriptData='';
+
+                         var timestamp=0;
+
+
+                        for (var i = 0;i < syncDatafile.length;i++) {
+                          
+                                transcriptData+='<tr>';
+
+                                
+
+                           //      if(syncDatafile[i].speaker=="")
+                           //      {
+                           //         // transcriptData+='<td>+ add Speaker</td>';
+                           // transcriptData+='<td><input type="text" value="+ spk-0" style="width:100px;" onchange="onchangefunction(this)"></td>';
+                           
+                           // transcriptData+='<input type="hidden" value="+ spk-0" style="width:100px;">';
+                                  
+
+                           //      }
+
+                           //      else
+                           //      {
+
+                                    random_id_start=makeid(20);
+                                    // random_id_end=makeid(20);
+
+
+                                  transcriptData+='<td><input type="text" value="'+syncDatafile[i].speaker+'" style="width:100px;" onchange="onchangefunction(this)" id="'+random_id_start+'change"></td>';
+
+                                  transcriptData+='<input type="hidden" value="'+syncDatafile[i].speaker+'" style="width:100px;" placeholder="add speaker" id="'+random_id_start+'old">';
+
+                                // }
+
+                                // transcriptData+='<td hidden="">'+syncDatafile[i].data_start+'</td>';
+
+                                transcriptData+='<td>';
+
+                                for (var j = 0;j < syncDatafile[i].words.length;j++) {
+
+
+                                startTime=syncDatafile[i].words[j].data_start
+                                endTime=syncDatafile[i].words[j].data_end
+                                textData=syncDatafile[i].words[j].text
+
+                              transcriptData+='<span start_time="'+startTime+'" end_time="'+endTime+'" id="c_'+timestamp+'">'+textData+'</span>';
+                                  // transcriptData+='<span><input type="text" value="'+syncDatafile[i].words[j].text+'"></span>';
+                                  timestamp+=1
+
+
+                                }
+                                transcriptData+='</td>';
+
+                                // transcriptData+='<td hidden="">'+syncDatafile[i].data_end+'</td>';
+
+                                transcriptData+='</tr>';
+
+                        }
+
+                  $('#transcriptData').append(transcriptData);
+
+
+// end of get data===========================================================================================================================
+
+
+            var  StringData= '{{AsyncData|tojson|safe}}'
+
+            var syncData = JSON.parse(StringData);
+
+
+            console.log(syncData)
+
+            var cur_index = 0
+            var prev_index = 0
+
+
+            var audioPlayer = doc.getElementById("audiofile");
+            // var subtitles = doc.getElementById("subtitles");
+
+             var subtitlesWithSpeaker = doc.getElementById("transcriptData");
+              
+            // alert(audiofile)
+
+            audioPlayer.addEventListener("timeupdate", function(e){
+                syncData.forEach(function(element, index, array){
+
+                    if( audioPlayer.currentTime >= element.start && audioPlayer.currentTime <= element.end )
+
+                            if(index==0){
+                            document.getElementById("c_"+index).style.background = '#AFEEEE';
+                          }
+
+                    else{
+
+                            cur_index = index
+                              for (var i = cur_index + 1; i <= prev_index; i++)
+                              {
+                              document.getElementById("c_"+i).style.background  = '#4BB5C1';
+                       
+                              }
+                    
+                            if(prev_index == cur_index - 1 || prev_index == cur_index )
+                            {
+                              document.getElementById("c_"+index).style.background  = '#AFEEEE';
+
+                            }
+                            else
+                            {
+                              // console.log('entered else')
+                              for (var i = prev_index; i <= cur_index; i++) 
+                              {
+                              document.getElementById("c_"+i).style.background  = '#AFEEEE';
+
+                              }
+                            }
+                            prev_index = cur_index
+
+                      }
+
+
+                      if (audioPlayer.currentTime==audioPlayer.duration)
+                      {
+                        document.getElementById("c_"+index).style.background  = '#4BB5C1';
+                      }
+                      
+                      
+                });
+            });
+        }(window, document));
+
+
+  </script>
+
+
+
+
+  </body>
+</html>

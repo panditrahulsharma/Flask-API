@@ -24,7 +24,7 @@
 
 
       <video id="audiofile" width="320" height="176" controls>
-         <source src="http://localhost:5000/static/k.mp4" type="video/mp4">
+         <source src="http://localhost:5000/static/django.mp4" type="video/mp4">
          <!-- <source src="mov_bbb.ogg" type="video/ogg"> -->
        </video>
 
@@ -32,7 +32,7 @@
       {% else %}
 
       <p class="line">
-        <audio style="width:100%;" id="audiofile" src="http://localhost:5000/static/k.mp4" controls></audio>
+        <audio style="width:100%;" id="audiofile" src="http://localhost:5000/static/django.mp4" controls></audio>
       </p>
 
 
@@ -196,8 +196,8 @@
                                 for (var j = 0;j < syncDatafile[i].words.length;j++) {
 
 
-                                startTime=syncDatafile[i].words[j].data_start
-                                endTime=syncDatafile[i].words[j].data_end
+                                startTime=syncDatafile[i].words[j].start_time
+                                endTime=syncDatafile[i].words[j].end_time
                                 textData=syncDatafile[i].words[j].text
 
                               transcriptData+='<span start_time="'+startTime+'" end_time="'+endTime+'" id="c_'+timestamp+'">'+textData+'</span>';
