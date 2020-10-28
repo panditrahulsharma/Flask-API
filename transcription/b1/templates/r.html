@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>JavaScript - read JSON from URL</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+    <div class="mypanel"></div>
+
+    <script>
+        jQuery.extend({
+            getValues: function(url) {
+                var result = null;
+                $.ajax({
+                    url: url,
+                    type: 'get',
+                    // dataType: 'xml',
+                    async: false,
+                    success: function(data) {
+                        result = data;
+                    }
+                });
+               return result;
+            }
+        });
+
+var textData = $.getValues("http://localhost:5000/static/r.json");
+
+// console.log(results)
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>
+
+
