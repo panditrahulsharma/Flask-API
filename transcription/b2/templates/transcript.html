@@ -71,6 +71,9 @@
         ( function(win, doc) {
 
 
+
+// get data from file ================================================================================================
+
                       jQuery.extend({
                         getValues: function(url) {
                           var result = null;
@@ -96,9 +99,14 @@
 
                          var transcriptData='';
 
+                         var timestamp=0;
+
+
                         for (var i = 0;i < syncDatafile.length;i++) {
                           
                                 transcriptData+='<tr>';
+
+                                
 
                                 if(syncDatafile[i].speaker=="")
                                 {
@@ -112,21 +120,26 @@
 
                                 }
 
+                                // transcriptData+='<td hidden="">'+syncDatafile[i].data_start+'</td>';
+
                                 transcriptData+='<td>';
 
                                 for (var j = 0;j < syncDatafile[i].words.length;j++) {
 
-                                    startTime=syncDatafile[i].words[j].data_start
-                                    endTime=syncDatafile[i].words[j].data_end
-                                    textData=syncDatafile[i].words[j].text
 
-                                transcriptData+='<span start_time="'+startTime+'" end_time="'+endTime+'" id="c_'+j+'">'+textData+'</span>';
+                                startTime=syncDatafile[i].words[j].data_start
+                                endTime=syncDatafile[i].words[j].data_end
+                                textData=syncDatafile[i].words[j].text
+
+                              transcriptData+='<span start_time="'+startTime+'" end_time="'+endTime+'" id="c_'+timestamp+'">'+textData+'</span>';
                                   // transcriptData+='<span><input type="text" value="'+syncDatafile[i].words[j].text+'"></span>';
+                                  timestamp+=1
 
 
                                 }
-
                                 transcriptData+='</td>';
+
+                                // transcriptData+='<td hidden="">'+syncDatafile[i].data_end+'</td>';
 
                                 transcriptData+='</tr>';
 
@@ -135,7 +148,7 @@
                   $('#transcriptData').append(transcriptData);
 
 
-
+// end of get data===========================================================================================================================
 
 
             var  StringData= '{{AsyncData|tojson|safe}}'
@@ -151,6 +164,8 @@
 
             var audioPlayer = doc.getElementById("audiofile");
             var subtitles = doc.getElementById("subtitles");
+
+             var subtitlesWithSpeaker = doc.getElementById("transcriptData");
               
             // alert(audiofile)
 
@@ -179,39 +194,49 @@
 
                     if( audioPlayer.currentTime >= element.start && audioPlayer.currentTime <= element.end )
 
-                        if(index==0){
-                        subtitles.children[index].style.background = '#AFEEEE';
-                      }
-
-                      else{
-
-                        cur_index = index
-                        // console.log(element.text, cur_index, prev_index, cur_index - prev_index)
-
-                          for (var i = cur_index + 1; i <= prev_index; i++)
-                          {
-                          subtitles.children[i].style.background = '#4BB5C1';                      
+                            if(index==0){
+                            subtitles.children[index].style.background = '#AFEEEE';
+                            document.getElementById("c_"+index).style.background = '#AFEEEE';
                           }
-                
-                        if(prev_index == cur_index - 1 || prev_index == cur_index )
-                        {
-                          subtitles.children[index].style.background = '#AFEEEE';
-                        }
-                        else
-                        {
-                          // console.log('entered else')
-                          for (var i = prev_index; i <= cur_index; i++) 
-                          {
-                            subtitles.children[i].style.background = '#AFEEEE';
-                          }}
-                        prev_index = cur_index
+
+                    else{
+
+                            cur_index = index
+                            // console.log(element.text, cur_index, prev_index, cur_index - prev_index)
+
+                              for (var i = cur_index + 1; i <= prev_index; i++)
+                              {
+                              subtitles.children[i].style.background = '#4BB5C1';   
+                              document.getElementById("c_"+i).style.background  = '#4BB5C1';
+                       
+                              }
+                    
+                            if(prev_index == cur_index - 1 || prev_index == cur_index )
+                            {
+                              subtitles.children[index].style.background = '#AFEEEE';
+                              document.getElementById("c_"+index).style.background  = '#AFEEEE';
+
+                            }
+                            else
+                            {
+                              // console.log('entered else')
+                              for (var i = prev_index; i <= cur_index; i++) 
+                              {
+                                subtitles.children[i].style.background = '#AFEEEE';
+                              document.getElementById("c_"+i).style.background  = '#AFEEEE';
+
+                              }}
+                            prev_index = cur_index
 
                       }
+
 
                       if (audioPlayer.currentTime==audioPlayer.duration)
                       {
+                        document.getElementById("c_"+index).style.background  = '#4BB5C1';
                         subtitles.children[index].style.background = '#4BB5C1';
                       }
+                      
                       
                 });
             });

@@ -55,7 +55,7 @@
 
 
 
-      <p class="line" id="subtitles" hidden=""></p>
+      <p class="line" id="subtitles" ></p>
     </div>
   </div>
 
@@ -70,6 +70,9 @@
 
         ( function(win, doc) {
 
+
+
+// get data from file ================================================================================================
 
                       jQuery.extend({
                         getValues: function(url) {
@@ -96,43 +99,56 @@
 
                          var transcriptData='';
 
+                         var timestamp=0;
+
+
                         for (var i = 0;i < syncDatafile.length;i++) {
                           
                                 transcriptData+='<tr>';
 
+                                
+
                                 if(syncDatafile[i].speaker=="")
                                 {
-                                   transcriptData+='<td>+ add Speaker</td>';
+                                   // transcriptData+='<td>+ add Speaker</td>';
+                                   transcriptData+='<td><input type="text" value="+ Add Speaker" style="width:100px;"></td>';
                                 }
 
                                 else
                                 {
-                                  transcriptData+='<td>'+syncDatafile[i].speaker+'</td>';
+                                  transcriptData+='<td><input type="text" value="'+syncDatafile[i].speaker+'" style="width:100px;"></td>';
 
                                 }
+
+                                // transcriptData+='<td hidden="">'+syncDatafile[i].data_start+'</td>';
 
                                 transcriptData+='<td>';
 
                                 for (var j = 0;j < syncDatafile[i].words.length;j++) {
 
-                                  transcriptData+='<span>'+syncDatafile[i].words[j].text+'</span>';
+
+                                startTime=syncDatafile[i].words[j].data_start
+                                endTime=syncDatafile[i].words[j].data_end
+                                textData=syncDatafile[i].words[j].text
+
+                              transcriptData+='<span start_time="'+startTime+'" end_time="'+endTime+'" id="c_'+timestamp+'">'+textData+'</span>';
+                                  // transcriptData+='<span><input type="text" value="'+syncDatafile[i].words[j].text+'"></span>';
+                                  timestamp+=1
+
 
                                 }
-
                                 transcriptData+='</td>';
+
+                                // transcriptData+='<td hidden="">'+syncDatafile[i].data_end+'</td>';
 
                                 transcriptData+='</tr>';
 
-
-
-                            console.log(syncDatafile[i].speaker+'---'+syncDatafile[i].data_start+'------'+syncDatafile[i].data_end)
-                            console.log("----------------------------")
                         }
 
                   $('#transcriptData').append(transcriptData);
 
 
-
+// end of get data===========================================================================================================================
 
 
             var  StringData= '{{AsyncData|tojson|safe}}'
@@ -148,6 +164,8 @@
 
             var audioPlayer = doc.getElementById("audiofile");
             var subtitles = doc.getElementById("subtitles");
+
+             var subtitlesWithSpeaker = doc.getElementById("transcriptData");
               
             // alert(audiofile)
 
@@ -176,39 +194,49 @@
 
                     if( audioPlayer.currentTime >= element.start && audioPlayer.currentTime <= element.end )
 
-                        if(index==0){
-                        subtitles.children[index].style.background = '#AFEEEE';
-                      }
-
-                      else{
-
-                        cur_index = index
-                        // console.log(element.text, cur_index, prev_index, cur_index - prev_index)
-
-                          for (var i = cur_index + 1; i <= prev_index; i++)
-                          {
-                          subtitles.children[i].style.background = '#4BB5C1';                      
+                            if(index==0){
+                            subtitles.children[index].style.background = '#AFEEEE';
+                            subtitlesWithSpeaker.children[0].cells[1].children[index].style.background = '#AFEEEE';
                           }
-                
-                        if(prev_index == cur_index - 1 || prev_index == cur_index )
-                        {
-                          subtitles.children[index].style.background = '#AFEEEE';
-                        }
-                        else
-                        {
-                          // console.log('entered else')
-                          for (var i = prev_index; i <= cur_index; i++) 
-                          {
-                            subtitles.children[i].style.background = '#AFEEEE';
-                          }}
-                        prev_index = cur_index
+
+                    else{
+
+                            cur_index = index
+                            // console.log(element.text, cur_index, prev_index, cur_index - prev_index)
+
+                              for (var i = cur_index + 1; i <= prev_index; i++)
+                              {
+                              subtitles.children[i].style.background = '#4BB5C1';   
+                              subtitlesWithSpeaker.children[0].cells[1].children[index].style.background = '#4BB5C1';
+                       
+                              }
+                    
+                            if(prev_index == cur_index - 1 || prev_index == cur_index )
+                            {
+                              subtitles.children[index].style.background = '#AFEEEE';
+                              subtitlesWithSpeaker.children[0].cells[1].children[index].style.background = '#AFEEEE';
+
+                            }
+                            else
+                            {
+                              // console.log('entered else')
+                              for (var i = prev_index; i <= cur_index; i++) 
+                              {
+                                subtitles.children[i].style.background = '#AFEEEE';
+                              subtitlesWithSpeaker.children[0].cells[1].children[index].style.background = '#AFEEEE';
+
+                              }}
+                            prev_index = cur_index
 
                       }
+
 
                       if (audioPlayer.currentTime==audioPlayer.duration)
                       {
+                        subtitlesWithSpeaker.children[0].cells[1].children[index].style.background = '#4BB5C1';
                         subtitles.children[index].style.background = '#4BB5C1';
                       }
+                      
                       
                 });
             });

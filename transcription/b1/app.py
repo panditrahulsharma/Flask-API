@@ -3,7 +3,6 @@
 from flask import Flask, render_template, flash, redirect, url_for, session, request, logging
 import pandas as pd
 import json
-from FileFormat import is_video_file
 
 app = Flask(__name__)
 
@@ -30,14 +29,10 @@ def thanks():
 	        
 	        AsyncData.append({'end':firstItem['end_time'],'start':firstItem['start_time'],'text':firstItem['alternatives'][0]['content']})
 
-	# print(AsyncData)
-
-	#fileFormat=True it means it is a vedio file
-	#else it is audio file
 
 	ext='mp3'
 
-	return render_template('transcript.html',AsyncData=AsyncData,fileFormat=is_video_file(ext))
+	return render_template('transcript.html',AsyncData=AsyncData,fileFormat=True)
 
 if __name__ == '__main__':
 	app.run(debug=True,host='localhost')

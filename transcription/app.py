@@ -1,9 +1,9 @@
 #rahul pandit
+from flask import Flask, request, jsonify, json, make_response, redirect, session, send_from_directory,flash
 
-from flask import Flask, render_template, flash, redirect, url_for, session, request, logging
+from flask import Flask, render_template, flash, redirect, url_for, session, request, logging,make_response
 import pandas as pd
 import json
-from FileFormat import is_video_file
 
 app = Flask(__name__)
 
@@ -30,14 +30,34 @@ def thanks():
 	        
 	        AsyncData.append({'end':firstItem['end_time'],'start':firstItem['start_time'],'text':firstItem['alternatives'][0]['content']})
 
-	# print(AsyncData)
-
-	#fileFormat=True it means it is a vedio file
-	#else it is audio file
 
 	ext='mp3'
 
-	return render_template('transcript.html',AsyncData=AsyncData,fileFormat=is_video_file(ext))
+	fileName="http://localhost:5000/static/new.json"
+
+	return render_template('transcript.html',AsyncData=AsyncData,fileFormat=True,fileName=fileName)
+
+
+
+@app.route('/TranscriptSpeakerEditable',methods=['GET','POST'])
+def TranscriptSpeakerEditable():
+	old_data=request.form['old_value']
+	new_data=request.form['new_value']
+
+	print(old_data,new_data)
+
+	send_data = {"data1":new_data,"data2":new_data,"sucess":True}
+	return make_response(jsonify(send_data), 200)
+
+
+
+
+
+
+
+
+
+
 
 if __name__ == '__main__':
 	app.run(debug=True,host='localhost')
