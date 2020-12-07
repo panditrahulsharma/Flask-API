@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>class demo</title>
+  <style>
+#overlayText {
+ position:absolute;
+  top:30%;
+  left:20%;
+  z-index:1;
+}
+
+#topText {
+  color: white;
+  font-size: 20px;
+  align-self: center;
+}
+  </style>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+<div class="container">
+    <video id="video" width="270" height="282" onclick="play();">
+        <source src="rpa.mp4" type="video/mp4" />
+    </video>
+    <div class="overlayText">
+        <p id="topText">Content above your video</p>
+    </div>
+</div>`enter code here`
+</body>
+</html>

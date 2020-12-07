@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div {
+   width:600px;
+}
+.demo * {
+   display: block;
+   background-color;
+   border: 2px solid yellow;
+   color: blue;
+   padding: 10px;
+   margin: 10px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+   $(document).ready(function(){
+
+      console.log($("li.test").siblings(".urlid").val());
+      console.log($("li.test").siblings(".servicetype").val());
+
+      $("li.test").siblings().css({"background-color": "orange","color": "white", "border": "3px dashed blue"});
+   });
+</script>
+</head>
+<body>
+<h2>Demo Heading</h2>
+<div class="demo">
+<ul>ul (parent)
+<input type="hidden" name="urlid" value="urlid" class="urlid">
+<input type="hidden" name="servicetype" value="transcribe" class="servicetype">
+
+<li>previous sibling</li>
+<li>previous sibling</li>
+<li>previous sibling</li>
+<li class="test">li (sibling)</li>
+<li>next sibling</li>
+<li>next sibling</li>
+<li>next sibling</li>
+</ul>
+</div>
+</body>
+</html>

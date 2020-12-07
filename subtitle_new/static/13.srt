@@ -1,0 +1,32 @@
+1
+00:00:00.040 --> 00:00:02.839
+So here three scenarios. One where the data lives
+
+2
+00:00:02.839 --> 00:00:05.379
+on the line. Like this one with data literally
+
+3
+00:00:05.379 --> 00:00:07.809
+comes from a circle like that in a kind of
+
+4
+00:00:07.809 --> 00:00:11.169
+very equal distribution in the X and Y axis.
+
+5
+00:00:11.640 --> 00:00:15.130
+In one way, the data for the vertical and
+
+6
+00:00:15.130 --> 00:00:17.280
+I'm gonna ask a couple of two of false questions
+
+7
+00:00:17.280 --> 00:00:20.899
+here. First one, just the principal component analysis
+
+8
+00:00:21.339 --> 00:00:23.980
+return a result yes or no for either of these
+
