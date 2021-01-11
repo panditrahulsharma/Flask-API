@@ -1,0 +1,19 @@
+{
+   "people": [
+      {
+         "name": "Cadillac Escalade EXT Crew Cab 2007",
+         "website": "stackabuse.com",
+         "from": "Nebraska"
+      },
+      {
+         "name": "Larry",
+         "website": "google.com",
+         "from": "Michigan"
+      },
+      {
+         "name": "Tim",
+         "website": "apple.com",
+         "from": "Alabama"
+      }
+   ]
+}

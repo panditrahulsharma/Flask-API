@@ -1,0 +1,136 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="author" content="colorlib.com">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" />
+    <link href="../static/d2/css/main.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="s007">
+      <form>
+        <div class="inner-form">
+          <div class="basic-search">
+            <div class="input-field">
+              <div class="icon-wrap">
+
+              </div>
+              <input id="search" type="text" value="Total results found" />
+              <div class="result-count">
+                <span>{{totalResult}} </span>results</div>
+            </div>
+          </div>
+          <div class="advance-search">
+            <span class="desc">Advanced Search</span>
+
+            <div class="row">
+              <div class="input-field">
+                <div class="input-select">
+                  <select data-trigger="" name="choices-single-defaul">
+                    <option placeholder="" value="">Filter By File Type</option>
+                    <!-- For loop logic of jinja template -->
+                    {%for i in ext%} 
+                      <option value="{{i}}">{{i}}</option>
+                    {%endfor%} 
+
+                  </select>
+                </div>
+              </div>
+
+              <div class="input-field">
+                <div class="input-select">
+
+                    {%for item in countByext%} 
+                      <h3>ext ={{item['ext']}} FileCount {{item['count']}} </h3>
+                    {%endfor%} 
+                  </div>
+              </div>
+
+            </div>
+
+<!-- 
+            <div class="row second">
+              <div class="input-field">
+                <div class="input-select">
+                  <select data-trigger="" name="choices-single-defaul">
+                    <option placeholder="" value="">SALE</option>
+                    <option>SALE</option>
+                    <option>SUBJECT B</option>
+                    <option>SUBJECT C</option>
+                  </select>
+                </div>
+              </div>
+              <div class="input-field">
+                <div class="input-select">
+                  <select data-trigger="" name="choices-single-defaul">
+                    <option placeholder="" value="">TIME</option>
+                    <option>THIS WEEK</option>
+                    <option>SUBJECT B</option>
+                    <option>SUBJECT C</option>
+                  </select>
+                </div>
+              </div>
+              <div class="input-field">
+                <div class="input-select">
+                  <select data-trigger="" name="choices-single-defaul">
+                    <option placeholder="" value="">TYPE</option>
+                    <option>TYPE</option>
+                    <option>SUBJECT B</option>
+                    <option>SUBJECT C</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row third">
+              <div class="input-field">
+                <button class="btn-search">Search</button>
+                <button class="btn-delete" id="delete">Delete</button>
+              </div>
+            </div> -->
+
+          </div>
+        </div>
+      </form>
+    </div>
+    <script src="../static/d2/js/extention/choices.js"></script>
+    <script>
+      const customSelects = document.querySelectorAll("select");
+      const deleteBtn = document.getElementById('delete')
+      const choices = new Choices('select',
+      {
+        searchEnabled: false,
+        removeItemButton: true,
+        itemSelectText: '',
+      });
+      for (let i = 0; i < customSelects.length; i++)
+      {
+        customSelects[i].addEventListener('addItem', function(event)
+        {
+          if (event.detail.value)
+          {
+            let parent = this.parentNode.parentNode
+            parent.classList.add('valid')
+            parent.classList.remove('invalid')
+          }
+          else
+          {
+            let parent = this.parentNode.parentNode
+            parent.classList.add('invalid')
+            parent.classList.remove('valid')
+          }
+        }, false);
+      }
+      deleteBtn.addEventListener("click", function(e)
+      {
+        e.preventDefault()
+        const deleteAll = document.querySelectorAll('.choices__button')
+        for (let i = 0; i < deleteAll.length; i++)
+        {
+          deleteAll[i].click();
+        }
+      });
+
+    </script>
+  </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

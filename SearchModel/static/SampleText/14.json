@@ -1,0 +1,19 @@
+{
+   "people": [
+      {
+         "name": "Tesla Model S Sedan 2012",
+         "website": "stackabuse.com",
+         "from": "Nebraska"
+      },
+      {
+         "name": "Larry",
+         "website": "google.com",
+         "from": "Michigan"
+      },
+      {
+         "name": "Tim",
+         "website": "apple.com",
+         "from": "Alabama"
+      }
+   ]
+}

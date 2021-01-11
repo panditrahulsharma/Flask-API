@@ -1,0 +1,5 @@
+Appended line BMW X6 SUV 2012 1
+Appended line Cadillac Escalade EXT Crew Cab 2007 2
+Appended line BMW X6 SUV 2012 1
+Appended line Cadillac Escalade EXT Crew Cab 2007 2
+Now the file has more content!car class Plymouth Neon Coupe 1999

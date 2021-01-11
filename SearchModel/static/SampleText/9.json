@@ -1,0 +1,19 @@
+{
+   "people": [
+      {
+         "name": "Mercedes-Benz 300-Class Convertible 1993",
+         "website": "stackabuse.com",
+         "from": "Nebraska"
+      },
+      {
+         "name": "Larry",
+         "website": "google.com",
+         "from": "Michigan"
+      },
+      {
+         "name": "Tim",
+         "website": "apple.com",
+         "from": "Alabama"
+      }
+   ]
+}
