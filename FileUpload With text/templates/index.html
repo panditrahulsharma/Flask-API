@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Cloutcube Dashboard</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- script for upload transcript file -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+
+<script type="text/javascript">
+    $(document).ready(function (e) {
+
+
+       $('#upload-file-btn1').click(function() {
+      // $('#upload').on('click', function () {
+        var form_data = new FormData();
+        var ins = document.getElementById('file-upload').files.length;
+        Volume=$("#Volume").val();
+        console.log(Volume)
+
+        if(ins == 0) {
+          $('#msg').html('<span style="color:red">Select at least one file</span>');
+          return;
+        }
+        
+        for (var x = 0; x < ins; x++) {
+          form_data.append("files[]", document.getElementById('file-upload').files[x]);
+        }
+        
+        form_data.append("Volume",Volume)
+
+
+
+
+        $.ajax({
+          url: '/Submitpaper', // point to server-side URL
+          dataType: 'multipart/form-data', // what to expect back from server
+          cache: false,
+          contentType: false,
+          processData: false,
+          data: form_data,
+          type: 'post',
+          success: function (response) { // display success response
+
+           $('#msg').html(response.message); // display error response
+          },
+          error: function (response) {
+            $('#msg').html(response.message); // display error response
+            // console.log(response)
+          }
+        });
+      });
+    });
+</script>
+
+
+    <title></title>
+</head>
+<body>
+<h1><p id="msg"></p></h1>
+
+<form id="upload">
+    <input type="text" name="" id="Volume">
+    <input type="file" name="files[]" id="file-upload">
+    <button type="button" id="upload-file-btn1">upload</button>
+
+</form>
+
+</body>
+</html>
