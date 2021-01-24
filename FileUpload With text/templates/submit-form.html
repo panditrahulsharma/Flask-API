@@ -90,7 +90,6 @@
 
 			        $.ajax({
 			          url: '/Submitpaper', // point to server-side URL
-			          dataType: 'multipart/form-data', // what to expect back from server
 			          cache: false,
 			          contentType: false,
 			          processData: false,
@@ -98,17 +97,18 @@
 			          type: 'post',
 			          success: function (response) { // display success response
 
-			          	console(response)
+			          	console.log(response)
 			          	if(response.success)
 			          	{
-		          		console.log(response.message)
-			          $('#msg').html(response.message); // display error response	
+		          		// console.log(response.message)
+		          		 $('#msg').html('<span style="color:red">'+response.message+' your project code is '+response.ProjectId+'</span>');
+			          // $('#msg').html(response.message); // display error response	
 			          }
 
 			          else
 			          {
-			          	console.log(response.message)
-			          $('#msg').html(response.message); // display error response	
+			          	// console.log(response.message)
+		          		 $('#msg').html('<span style="color:red">'+response.message+'</span>');
 			          }
 
 			           
